@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { activityYears, getYearActivities } from "../../data/activities";
+
+export function getStaticPaths() {
+  return activityYears.map((year) => ({
+    params: { year: String(year) },
+    props: {
+      year,
+      items: getYearActivities(year)
+    }
+  }));
+}
+
+const { year, items } = Astro.props;
+---
+
+<BaseLayout title={`Actividades ${year} | Joaju`}>
+  <main class="min-h-screen py-24">
+    <section class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+      <a href="/actividades" class="text-sm font-semibold text-joaju-muted transition hover:text-joaju-orange">
+        ← Volver a años
+      </a>
+
+      <div class="mt-6 max-w-3xl">
+        <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
+          Año {year}
+        </span>
+        <h1 class="m-0 text-[clamp(2.8rem,6vw,4.8rem)] font-black leading-[0.95] text-joaju-dark">
+          Actividades realizadas en {year}
+        </h1>
+        <p class="mt-5 text-lg leading-8 text-joaju-muted">
+          Selecciona una actividad para ver su descripción completa y su galería de fotos.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        {items.map((activity) => (
+          <a
+            href={`/actividades/${year}/${activity.slug}`}
+            class="group overflow-hidden rounded-[1.8rem] border border-joaju-dark/10 bg-white shadow-soft transition hover:-translate-y-1"
+          >
+            <div class="overflow-hidden">
+              <img
+                src={activity.heroImage}
+                alt={activity.title}
+                class="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-7">
+              <span class="inline-flex rounded-full bg-joaju-yellow/20 px-3 py-1 text-sm font-bold text-amber-800">
+                {activity.dateLabel}
+              </span>
+              <h2 class="mt-4 text-2xl font-black text-joaju-dark">{activity.title}</h2>
+              <p class="mt-3 leading-7 text-joaju-muted">{activity.summary}</p>
+              <span class="mt-6 inline-flex font-semibold text-joaju-orange transition group-hover:translate-x-1">
+                Ver actividad →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

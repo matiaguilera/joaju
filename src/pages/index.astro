@@ -1,0 +1,535 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { activityYears } from "../data/activities";
+
+const committee = [
+  { name: "Angelica Vargas", role: "Presidenta", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+  { name: "Leticia Fernandez", role: "Redes Sociales y Marketing", image: "https://randomuser.me/api/portraits/women/68.jpg" },
+  { name: "Marcelo Villalba", role: "Secretario", image: "https://randomuser.me/api/portraits/men/32.jpg" },
+  { name: "Matias Aguilera", role: "Documentacion", image: "https://randomuser.me/api/portraits/men/45.jpg" }
+];
+
+const pillars = [
+  {
+    title: "Mision",
+    description: "Generar oportunidades, acompanar procesos y crear espacios donde la solidaridad se vuelva una herramienta concreta para dibujar el futuro.",
+    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
+  },
+  {
+    title: "Vision",
+    description: "Ser una red de voluntariado referente en impacto comunitario, integrando compromiso humano, creatividad y trabajo colaborativo.",
+    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80"
+  }
+];
+
+const announcements = [
+  {
+    title: "Banco de Sangre",
+    description: "Una iniciativa orientada a promover la donación voluntaria y el compromiso solidario con la comunidad.",
+    tone: "yellow",
+    image: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=1200&q=80"
+  },
+  {
+    title: "Capacitación Primeros Auxilios",
+    description: "Una actividad pensada para fortalecer conocimientos básicos y preparación ante situaciones de emergencia.",
+    tone: "orange",
+    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=1200&q=80"
+  },
+  {
+    title: "Campaña Manos que abrigan",
+    description: "Una campaña solidaria enfocada en acompañar a quienes más lo necesitan con abrigo y apoyo cercano.",
+    tone: "green",
+    image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?w=1200&q=80"
+  }
+];
+
+const partners = ["Datapar", "Escuelas Aliadas", "Organizaciones Barriales", "Empresas Amigas", "Voluntarios", "Comunidad"];
+const navItems = [
+  { href: "#quienes-somos", label: "Quiénes Somos" },
+  { href: "#comite", label: "Comité" },
+  { href: "#mision-vision", label: "Misión/Visión" },
+  { href: "#actividades", label: "Actividades" },
+  { href: "#voluntariado", label: "Sé Voluntario", cta: true }
+];
+
+const toneMap = {
+  yellow: {
+    cardGlow: "after:bg-joaju-yellow/20",
+    icon: "from-joaju-yellow to-amber-400"
+  },
+  orange: {
+    cardGlow: "after:bg-joaju-orange/20",
+    icon: "from-joaju-orange to-rose-400"
+  },
+  green: {
+    cardGlow: "after:bg-joaju-green/20",
+    icon: "from-joaju-green to-emerald-300"
+  }
+};
+---
+
+<BaseLayout title="Joaju - Dibujando el Futuro | Astro">
+  <header class="sticky top-0 z-20 border-b border-joaju-dark/8 bg-[rgba(247,247,242,0.72)] backdrop-blur-xl">
+    <div class="mx-auto flex w-[min(1120px,calc(100%-2rem))] items-center justify-between gap-4 py-1.5 md:py-2">
+      <a href="#inicio" class="inline-flex items-center">
+        <img src="/logo.png" alt="Logo Joaju" class="h-[40px] w-auto object-contain md:h-[46px]" />
+      </a>
+      <nav class="hidden flex-wrap items-center gap-7 text-[0.95rem] font-semibold text-joaju-muted md:flex lg:gap-9">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "transition",
+              item.cta
+                ? "inline-flex min-w-[160px] items-center justify-center rounded-xl bg-joaju-orange px-5 py-2.5 text-[0.92rem] font-bold text-white shadow-sm hover:-translate-y-0.5 hover:bg-joaju-dark"
+                : "px-1 hover:text-joaju-orange"
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <details class="relative md:hidden">
+        <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-joaju-dark/10 bg-white/70 text-joaju-dark shadow-sm marker:content-none">
+          <span class="sr-only">Abrir menu</span>
+          <span class="flex flex-col gap-1.5">
+            <span class="block h-0.5 w-5 rounded-full bg-current"></span>
+            <span class="block h-0.5 w-5 rounded-full bg-current"></span>
+            <span class="block h-0.5 w-5 rounded-full bg-current"></span>
+          </span>
+        </summary>
+        <div class="absolute right-0 top-[calc(100%+0.75rem)] min-w-[220px] overflow-hidden rounded-2xl border border-joaju-dark/10 bg-white/95 p-2 text-joaju-muted shadow-soft backdrop-blur">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "block rounded-xl px-4 py-3 font-semibold transition",
+                item.cta
+                  ? "bg-joaju-orange text-center font-extrabold text-white hover:bg-joaju-dark"
+                  : "hover:bg-joaju-dark/5 hover:text-joaju-orange"
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="relative flex h-[calc(100svh-57px)] items-center overflow-clip md:h-[calc(100svh-62px)]">
+      <div class="bg-hero-overlay absolute inset-0"></div>
+      <div class="relative z-10 mx-auto flex w-[min(1120px,calc(100%-2rem))] justify-center">
+        <div class="text-center text-white" data-animate="up">
+          <div class="glow-yellow absolute left-[8%] top-[18%] h-[160px] w-[160px] rounded-full blur-[70px] max-md:hidden"></div>
+          <div class="glow-orange absolute bottom-[18%] right-[10%] h-[190px] w-[190px] rounded-full blur-[70px] max-md:hidden"></div>
+          <h1 class="m-0 text-[clamp(4rem,10vw,8rem)] leading-[0.9] font-black">Joaju</h1>
+          <p class="mt-4 text-[clamp(1.4rem,3vw,2.2rem)] font-medium tracking-[0.08em] text-white/88">
+            “Dibujando el futuro”
+          </p>
+          <div class="mt-10 flex justify-center">
+            <a class="inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5" href="#voluntariado">
+              ¡Únete a nosotros!
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quienes-somos" class="bg-white/55 py-24">
+      <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 md:grid-cols-[1.05fr_0.95fr]">
+        <div data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
+            ¿Quiénes Somos?
+          </span>
+          <h2 class="m-0 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-black text-joaju-dark">
+            Una comunidad unida por el calor humano y la esperanza
+          </h2>
+          <div class="mt-6 space-y-5 text-lg leading-8 text-joaju-muted">
+            <p>
+              Somos Joaju, un programa de voluntariado compuesto por los colaboradores de Datapar.
+              Nacimos con la misión de realizar acciones solidarias, buscando aportar en la construcción
+              de mejores oportunidades para niños, adolescentes, jóvenes y adultos en situación vulnerable.
+            </p>
+            <p class="font-semibold text-joaju-dark">
+              ¡Una comunidad unida por el calor humano y la esperanza!
+            </p>
+          </div>
+        </div>
+
+        <div class="relative min-h-[360px]" data-animate="scale">
+          <div class="glow-yellow absolute left-[6%] top-[10%] h-[140px] w-[140px] rounded-full blur-[70px]"></div>
+          <div class="glow-orange absolute bottom-[8%] right-[4%] h-[180px] w-[180px] rounded-full blur-[70px]"></div>
+          <div class="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 p-4 shadow-soft backdrop-blur">
+            <img
+              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
+              alt="Comunidad Joaju"
+              class="h-[420px] w-full rounded-[1.5rem] object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="identidad-visual" class="relative overflow-clip py-24">
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,195,0,0.12),transparent_20%),radial-gradient(circle_at_top_right,rgba(255,87,51,0.12),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.75),rgba(255,255,255,0.62))]"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-35 [background-image:url('https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=1400&q=80')] bg-cover bg-center grayscale"></div>
+
+      <div class="relative z-10 mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto max-w-5xl text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
+            Identidad Visual
+          </span>
+          <h2 class="m-0 text-[clamp(3rem,7vw,5.4rem)] leading-[0.95] font-black text-joaju-dark">
+            <span class="text-joaju-yellow">I</span>dentidad <span class="text-joaju-yellow">V</span>isual
+          </h2>
+          <p class="mx-auto mt-8 max-w-4xl text-xl font-semibold leading-9 text-joaju-dark">
+            El concepto del logo e identidad visual es simbolizar el voluntariado como puente entre la ayuda y la necesidad.
+          </p>
+        </div>
+
+        <div class="mx-auto mt-10 max-w-4xl text-center" data-animate="up">
+          <p class="text-lg leading-8 text-joaju-muted">
+            <strong class="text-joaju-dark">La identidad de Joaju tiene varios significados.</strong>
+            El logotipo tiene la forma de dos personas abrazándose, que le da un significado humano, cálido y de unidad,
+            y la forma de una sonrisa, un gesto de alegría y felicidad.
+          </p>
+        </div>
+
+        <div class="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-5 rounded-[2rem] border border-white/80 bg-white/70 px-6 py-8 shadow-soft backdrop-blur" data-animate="scale">
+          <div class="flex h-24 w-24 items-center justify-center rounded-full border-2 border-joaju-dark/20 bg-white text-5xl shadow-sm">
+            🤝
+          </div>
+          <span class="text-4xl font-black text-joaju-dark">+</span>
+          <div class="flex h-24 w-24 items-center justify-center rounded-full border-2 border-joaju-dark/20 bg-white text-5xl shadow-sm">
+            ☺
+          </div>
+          <span class="text-4xl font-black text-joaju-dark">=</span>
+          <div class="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-joaju-yellow via-amber-300 to-joaju-orange shadow-lg">
+            <img src="/logo.png" alt="Logo Joaju" class="h-16 w-auto object-contain" />
+          </div>
+        </div>
+
+        <div class="mx-auto mt-12 max-w-4xl text-center" data-animate="up">
+          <p class="text-xl font-semibold leading-9 text-joaju-dark">
+            Utilizamos colores cálidos y contrastados que refuerzan la idea de unión y alegría que quiere transmitir el proyecto.
+          </p>
+        </div>
+
+        <div class="pointer-events-none absolute left-6 top-8 hidden h-14 w-14 rounded-full border-2 border-joaju-orange/50 lg:block"></div>
+        <div class="pointer-events-none absolute left-24 bottom-10 hidden h-10 w-10 rounded-full border-2 border-emerald-400/60 lg:block"></div>
+        <div class="pointer-events-none absolute right-10 top-8 hidden h-14 w-14 rounded-full border-2 border-amber-400/60 lg:block"></div>
+        <div class="pointer-events-none absolute right-28 top-18 hidden h-12 w-12 rounded-full border-2 border-orange-300/70 lg:block"></div>
+        <div class="pointer-events-none absolute right-40 top-10 hidden h-12 w-12 rounded-full border-2 border-emerald-300/70 lg:block"></div>
+      </div>
+    </section>
+
+    <section class="py-24">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Anuncios</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Anuncios y proximos eventos</h2>
+        </div>
+        <div class="grid gap-6 md:grid-cols-3">
+          {announcements.map((item, index) => (
+            <article
+              class={`relative overflow-hidden rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 shadow-soft after:absolute after:-right-[20%] after:-bottom-[30%] after:h-[180px] after:w-[180px] after:rounded-full ${toneMap[item.tone].cardGlow}`}
+              data-animate="up"
+              style={`transition-delay:${index * 140}ms`}
+            >
+              <div class="mb-5 overflow-hidden rounded-[1.25rem]">
+                <img src={item.image} alt={item.title} class="h-52 w-full object-cover" />
+              </div>
+              <h3 class="m-0 text-[1.45rem] font-bold">{item.title}</h3>
+              <p class="mt-3 leading-7 text-joaju-muted">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="comite" class="bg-white/55 py-24">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Equipo</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Nuestro comite</h2>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {committee.map((person, index) => (
+            <article class="rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 text-center shadow-soft" data-animate="up" style={`transition-delay:${index * 90}ms`}>
+              <img src={person.image} alt={person.name} class="mx-auto mb-4 h-[132px] w-[132px] rounded-full border-[5px] border-white object-cover shadow-[0_16px_30px_rgba(10,58,42,0.12)]" />
+              <h3 class="m-0 text-[1.45rem] font-bold">{person.name}</h3>
+              <p class="mt-2 font-bold text-joaju-orange">{person.role}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="mision-vision" class="py-24">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Esencia</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Mision y vision</h2>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2">
+          {pillars.map((pillar, index) => (
+            <article class="relative min-h-[540px] overflow-hidden rounded-[2rem] shadow-soft max-sm:min-h-[420px]" data-animate="scale" style={`transition-delay:${index * 150}ms`}>
+              <img src={pillar.image} alt={pillar.title} class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-b from-joaju-dark/10 to-joaju-dark/88"></div>
+              <div class="absolute inset-x-0 bottom-0 p-8 text-white">
+                <h3 class="m-0 text-[1.45rem] font-bold">{pillar.title}</h3>
+                <p class="mt-4 max-w-[32rem] leading-7 text-white/86">{pillar.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/55 py-24">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto max-w-4xl text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
+            Nuestra Historia
+          </span>
+          <h2 class="m-0 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-black text-joaju-dark">
+            Un recorrido construido con solidaridad y compromiso
+          </h2>
+          <div class="mt-6 space-y-5 text-lg leading-8 text-joaju-muted">
+            <p>
+              Nuestra Historia es el reflejo de un camino compartido, marcado por acciones solidarias,
+              encuentros significativos y el deseo constante de generar un impacto positivo en la comunidad.
+            </p>
+            <p>
+              A lo largo del tiempo, Joaju fue creciendo gracias al compromiso de personas que decidieron
+              sumar su tiempo, su energía y su corazón a una causa común.
+            </p>
+            <p>
+              Este espacio funciona como un texto placeholder para presentar la evolución del proyecto y
+              luego puede ser reemplazado por una versión más completa y específica de la historia real de Joaju.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="actividades" class="bg-white/55 py-24">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Actividades</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Actividades</h2>
+          <p class="mt-4 leading-7 text-joaju-muted">
+            Elige un año para explorar las actividades realizadas y entrar luego al detalle completo de cada una.
+          </p>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+          {activityYears.map((year, index) => (
+            <a
+              href={`/actividades/${year}`}
+              class="group relative overflow-hidden rounded-[1.8rem] border border-joaju-dark/10 bg-white/85 p-7 text-center shadow-soft transition hover:-translate-y-1"
+              data-animate="up"
+              style={`transition-delay:${index * 90}ms`}
+            >
+              <div class="absolute inset-x-6 bottom-5 h-px origin-left scale-x-0 bg-gradient-to-r from-joaju-yellow via-joaju-orange to-joaju-green transition duration-300 group-hover:scale-x-100"></div>
+              <span class="text-6xl font-black text-joaju-dark/70 transition duration-300 group-hover:text-joaju-dark">{year}</span>
+              <p class="mt-5 inline-flex translate-y-2 items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-joaju-orange opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                Ver actividades
+                <span class="text-base transition duration-300 group-hover:translate-x-1">→</span>
+              </p>
+            </a>
+          ))}
+        </div>
+        <div class="mt-10 text-center">
+          <a href="/actividades" class="font-semibold text-joaju-orange transition hover:text-joaju-dark">
+            Ver todas las actividades por año →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-joaju-dark/6 py-24">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Alianzas</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Convenios y alianzas</h2>
+          <p class="mt-4 leading-7 text-joaju-muted">Juntos logramos mas.</p>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+          {partners.map((partner, index) => (
+            <div class="grid min-h-[110px] place-items-center rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 text-center font-extrabold text-joaju-muted shadow-soft" data-animate="up" style={`transition-delay:${index * 70}ms`}>
+              {partner}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="voluntariado" class="relative overflow-clip py-24 text-white">
+      <div class="bg-hero-overlay absolute inset-0"></div>
+      <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-12 md:grid-cols-2">
+        <img src="/joaju_light.png" alt="Logo Joaju claro" class="mx-auto w-[min(260px,70%)]" data-animate="scale" />
+        <div data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/9 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">
+            Sumate a Joaju
+          </span>
+          <h2 class="m-0 text-[clamp(3rem,7vw,5.8rem)] leading-[0.95] font-black">¡Sé parte de Joaju!</h2>
+          <div class="mt-6 max-w-[40rem] space-y-4 text-[1.1rem] leading-7 text-white/86">
+            <p>El programa cuenta con la ayuda de colaboradores, amigos, familiares y clientes de Datapar.</p>
+            <p>Cualquiera con un corazón solidario es bienvenido.</p>
+            <p class="pt-2 text-xl font-semibold text-white">
+              ¿Te animás a transformar tu vida y la de los demás?<br />
+              ¡Este es tu momento!
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5" href="#formulario-ayuda">
+              Quiero ayudar
+            </a>
+            <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-extrabold text-white transition hover:-translate-y-0.5" href="https://instagram.com/joajupy" target="_blank" rel="noreferrer">
+              Siguenos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formulario-ayuda" class="bg-white/55 py-24">
+      <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+        <div data-animate="up">
+          <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
+            Donaciones
+          </span>
+          <h2 class="m-0 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-black text-joaju-dark">
+            ¿Quieres apoyar a Joaju?
+          </h2>
+          <p class="mt-6 text-lg leading-8 text-joaju-muted">
+            Completa este formulario para contarnos cómo te gustaría colaborar. Puedes donar, sumarte como
+            voluntario o aportar desde tus recursos, tu tiempo o tus contactos.
+          </p>
+
+          <div class="mt-8 rounded-[1.8rem] border border-joaju-dark/10 bg-white/85 p-6 shadow-soft">
+            <h3 class="text-xl font-black text-joaju-dark">Formas de ayudar</h3>
+            <div class="mt-5 grid gap-3 text-joaju-muted">
+              <div class="rounded-xl bg-joaju-cream px-4 py-3">Donación de dinero para campañas y actividades.</div>
+              <div class="rounded-xl bg-joaju-cream px-4 py-3">Ropa, abrigo, alimentos o útiles escolares.</div>
+              <div class="rounded-xl bg-joaju-cream px-4 py-3">Participación como voluntario en acciones solidarias.</div>
+              <div class="rounded-xl bg-joaju-cream px-4 py-3">Servicios, alianzas o apoyo en difusión.</div>
+            </div>
+          </div>
+        </div>
+
+        <form
+          data-animate="scale"
+          action="mailto:voluntariado@joaju.org"
+          method="post"
+          enctype="text/plain"
+          class="rounded-[2rem] border border-joaju-dark/10 bg-white p-7 shadow-soft"
+        >
+          <div class="grid gap-5 md:grid-cols-2">
+            <label class="grid gap-2">
+              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Nombre</span>
+              <input
+                type="text"
+                name="nombre"
+                required
+                placeholder="Tu nombre"
+                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
+              />
+            </label>
+
+            <label class="grid gap-2">
+              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Correo</span>
+              <input
+                type="email"
+                name="correo"
+                required
+                placeholder="tu@email.com"
+                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
+              />
+            </label>
+
+            <label class="grid gap-2 md:col-span-2">
+              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Teléfono</span>
+              <input
+                type="tel"
+                name="telefono"
+                placeholder="Tu número de contacto"
+                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
+              />
+            </label>
+          </div>
+
+          <fieldset class="mt-6">
+            <legend class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">¿Cómo te gustaría ayudar?</legend>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
+                <input type="checkbox" name="ayuda" value="Dinero" class="accent-[#ff5733]" />
+                <span>Donación de dinero</span>
+              </label>
+              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
+                <input type="checkbox" name="ayuda" value="Insumos" class="accent-[#ff5733]" />
+                <span>Ropa o insumos</span>
+              </label>
+              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
+                <input type="checkbox" name="ayuda" value="Voluntariado" class="accent-[#ff5733]" />
+                <span>Voluntariado</span>
+              </label>
+              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
+                <input type="checkbox" name="ayuda" value="Servicios o alianzas" class="accent-[#ff5733]" />
+                <span>Servicios o alianzas</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="mt-6 grid gap-2">
+            <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Mensaje</span>
+            <textarea
+              name="mensaje"
+              placeholder="Cuéntanos cómo te gustaría colaborar"
+              class="min-h-36 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
+            ></textarea>
+          </label>
+
+          <button
+            type="submit"
+            class="mt-8 inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-bold text-white transition hover:-translate-y-0.5 hover:bg-joaju-dark"
+          >
+            Enviar formulario
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-joaju-dark/10 bg-joaju-dark text-white">
+    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div class="space-y-4">
+        <a href="#inicio" class="inline-flex items-center gap-3 font-extrabold tracking-[0.04em]">
+          <img src="/joaju_light.png" alt="Logo Joaju claro" class="h-11 w-auto" />
+          <span>Joaju</span>
+        </a>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] text-joaju-yellow">Navegacion</h3>
+        <div class="grid gap-3 text-white/70">
+          {navItems.map((item) => (
+            <a href={item.href} class="transition hover:text-white">{item.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] text-joaju-yellow">Contacto</h3>
+        <div class="grid gap-3 text-white/70">
+          <a href="mailto:voluntariado@joaju.org" class="transition hover:text-white">voluntariado@joaju.org</a>
+          <a href="https://instagram.com/joajupy" target="_blank" rel="noreferrer" class="transition hover:text-white">@joajupy</a>
+          <span>Voluntariado Datapar</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
