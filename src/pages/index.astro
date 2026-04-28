@@ -3,20 +3,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { activityYears } from "../data/activities";
 
 const committee = [
-  { name: "Angelica Vargas", role: "Presidenta", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+  { name: "Angélica Vargas", role: "Presidenta", image: "https://randomuser.me/api/portraits/women/44.jpg" },
   { name: "Leticia Fernandez", role: "Redes Sociales y Marketing", image: "https://randomuser.me/api/portraits/women/68.jpg" },
   { name: "Marcelo Villalba", role: "Secretario", image: "https://randomuser.me/api/portraits/men/32.jpg" },
-  { name: "Matias Aguilera", role: "Documentacion", image: "https://randomuser.me/api/portraits/men/45.jpg" }
+  { name: "Matías Aguilera", role: "Documentación", image: "https://randomuser.me/api/portraits/men/45.jpg" }
 ];
 
 const pillars = [
   {
-    title: "Mision",
+    title: "Misión",
     description: "Generar oportunidades, acompanar procesos y crear espacios donde la solidaridad se vuelva una herramienta concreta para dibujar el futuro.",
     image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80"
   },
   {
-    title: "Vision",
+    title: "Visión",
     description: "Ser una red de voluntariado referente en impacto comunitario, integrando compromiso humano, creatividad y trabajo colaborativo.",
     image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80"
   }
@@ -125,8 +125,8 @@ const toneMap = {
         <div class="text-center text-white" data-animate="up">
           <div class="glow-yellow absolute left-[8%] top-[18%] h-[160px] w-[160px] rounded-full blur-[70px] max-md:hidden"></div>
           <div class="glow-orange absolute bottom-[18%] right-[10%] h-[190px] w-[190px] rounded-full blur-[70px] max-md:hidden"></div>
-          <h1 class="m-0 text-[clamp(4rem,10vw,8rem)] leading-[0.9] font-black">Joaju</h1>
-          <p class="mt-4 text-[clamp(1.4rem,3vw,2.2rem)] font-medium tracking-[0.08em] text-white/88">
+          <h1 class="font-joaju-logo text-hero-logo m-0 text-[clamp(4rem,10vw,8rem)] leading-[0.86] font-extrabold tracking-[0.01em]">Joaju</h1>
+          <p class="font-joaju-tagline mt-2 text-[clamp(1.3rem,2.7vw,2rem)] font-bold tracking-[0.03em] text-white/88">
             “Dibujando el futuro”
           </p>
           <div class="mt-10 flex justify-center">
@@ -198,21 +198,15 @@ const toneMap = {
           </p>
         </div>
 
-        <div class="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-5 rounded-[2rem] border border-white/80 bg-white/70 px-6 py-8 shadow-soft backdrop-blur" data-animate="scale">
-          <div class="flex h-24 w-24 items-center justify-center rounded-full border-2 border-joaju-dark/20 bg-white text-5xl shadow-sm">
-            🤝
-          </div>
-          <span class="text-4xl font-black text-joaju-dark">+</span>
-          <div class="flex h-24 w-24 items-center justify-center rounded-full border-2 border-joaju-dark/20 bg-white text-5xl shadow-sm">
-            ☺
-          </div>
-          <span class="text-4xl font-black text-joaju-dark">=</span>
-          <div class="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-joaju-yellow via-amber-300 to-joaju-orange shadow-lg">
-            <img src="/logo.png" alt="Logo Joaju" class="h-16 w-auto object-contain" />
-          </div>
+        <div class="mx-auto mt-0 max-w-xl overflow-hidden" data-animate="scale">
+          <img
+            src="/imagen-identidad-visual.png"
+            alt="Composición de identidad visual de Joaju"
+            class="h-[220px] w-full object-cover object-center"
+          />
         </div>
 
-        <div class="mx-auto mt-12 max-w-4xl text-center" data-animate="up">
+        <div class="mx-auto mt-0 max-w-4xl text-center" data-animate="up">
           <p class="text-xl font-semibold leading-9 text-joaju-dark">
             Utilizamos colores cálidos y contrastados que refuerzan la idea de unión y alegría que quiere transmitir el proyecto.
           </p>
@@ -229,8 +223,8 @@ const toneMap = {
     <section class="py-24">
       <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
         <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Anuncios</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Anuncios y proximos eventos</h2>
+          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Anuncios</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Anuncios y próximos eventos</h2>
         </div>
         <div class="grid gap-6 md:grid-cols-3">
           {announcements.map((item, index) => (
@@ -253,8 +247,8 @@ const toneMap = {
     <section id="comite" class="bg-white/55 py-24">
       <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
         <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Equipo</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Nuestro comite</h2>
+          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Equipo</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Nuestro comité</h2>
         </div>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {committee.map((person, index) => (
@@ -271,8 +265,8 @@ const toneMap = {
     <section id="mision-vision" class="py-24">
       <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
         <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Esencia</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Mision y vision</h2>
+          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Esencia</span>
+          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Misión y visión</h2>
         </div>
         <div class="grid gap-6 md:grid-cols-2">
           {pillars.map((pillar, index) => (
@@ -319,7 +313,7 @@ const toneMap = {
     <section id="actividades" class="bg-white/55 py-24">
       <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
         <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Actividades</span>
+          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Actividades</span>
           <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Actividades</h2>
           <p class="mt-4 leading-7 text-joaju-muted">
             Elige un año para explorar las actividades realizadas y entrar luego al detalle completo de cada una.
@@ -353,9 +347,9 @@ const toneMap = {
     <section class="border-y border-joaju-dark/6 py-24">
       <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
         <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block rounded-full bg-white/12 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Alianzas</span>
+          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Alianzas</span>
           <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Convenios y alianzas</h2>
-          <p class="mt-4 leading-7 text-joaju-muted">Juntos logramos mas.</p>
+          <p class="mt-4 leading-7 text-joaju-muted">Juntos logramos más.</p>
         </div>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
           {partners.map((partner, index) => (
@@ -385,121 +379,14 @@ const toneMap = {
             </p>
           </div>
           <div class="mt-8 flex flex-wrap gap-4">
-            <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5" href="#formulario-ayuda">
+            <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5" href="/donaciones">
               Quiero ayudar
             </a>
             <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-extrabold text-white transition hover:-translate-y-0.5" href="https://instagram.com/joajupy" target="_blank" rel="noreferrer">
-              Siguenos
+              Síguenos
             </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="formulario-ayuda" class="bg-white/55 py-24">
-      <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-        <div data-animate="up">
-          <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-            Donaciones
-          </span>
-          <h2 class="m-0 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-black text-joaju-dark">
-            ¿Quieres apoyar a Joaju?
-          </h2>
-          <p class="mt-6 text-lg leading-8 text-joaju-muted">
-            Completa este formulario para contarnos cómo te gustaría colaborar. Puedes donar, sumarte como
-            voluntario o aportar desde tus recursos, tu tiempo o tus contactos.
-          </p>
-
-          <div class="mt-8 rounded-[1.8rem] border border-joaju-dark/10 bg-white/85 p-6 shadow-soft">
-            <h3 class="text-xl font-black text-joaju-dark">Formas de ayudar</h3>
-            <div class="mt-5 grid gap-3 text-joaju-muted">
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Donación de dinero para campañas y actividades.</div>
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Ropa, abrigo, alimentos o útiles escolares.</div>
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Participación como voluntario en acciones solidarias.</div>
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Servicios, alianzas o apoyo en difusión.</div>
-            </div>
-          </div>
-        </div>
-
-        <form
-          data-animate="scale"
-          action="mailto:voluntariado@joaju.org"
-          method="post"
-          enctype="text/plain"
-          class="rounded-[2rem] border border-joaju-dark/10 bg-white p-7 shadow-soft"
-        >
-          <div class="grid gap-5 md:grid-cols-2">
-            <label class="grid gap-2">
-              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Nombre</span>
-              <input
-                type="text"
-                name="nombre"
-                required
-                placeholder="Tu nombre"
-                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-              />
-            </label>
-
-            <label class="grid gap-2">
-              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Correo</span>
-              <input
-                type="email"
-                name="correo"
-                required
-                placeholder="tu@email.com"
-                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-              />
-            </label>
-
-            <label class="grid gap-2 md:col-span-2">
-              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Teléfono</span>
-              <input
-                type="tel"
-                name="telefono"
-                placeholder="Tu número de contacto"
-                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-              />
-            </label>
-          </div>
-
-          <fieldset class="mt-6">
-            <legend class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">¿Cómo te gustaría ayudar?</legend>
-            <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Dinero" class="accent-[#ff5733]" />
-                <span>Donación de dinero</span>
-              </label>
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Insumos" class="accent-[#ff5733]" />
-                <span>Ropa o insumos</span>
-              </label>
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Voluntariado" class="accent-[#ff5733]" />
-                <span>Voluntariado</span>
-              </label>
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Servicios o alianzas" class="accent-[#ff5733]" />
-                <span>Servicios o alianzas</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <label class="mt-6 grid gap-2">
-            <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Mensaje</span>
-            <textarea
-              name="mensaje"
-              placeholder="Cuéntanos cómo te gustaría colaborar"
-              class="min-h-36 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-            ></textarea>
-          </label>
-
-          <button
-            type="submit"
-            class="mt-8 inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-bold text-white transition hover:-translate-y-0.5 hover:bg-joaju-dark"
-          >
-            Enviar formulario
-          </button>
-        </form>
       </div>
     </section>
   </main>
@@ -514,7 +401,7 @@ const toneMap = {
       </div>
 
       <div class="space-y-4">
-        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] text-joaju-yellow">Navegacion</h3>
+        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] text-joaju-yellow">Navegación</h3>
         <div class="grid gap-3 text-white/70">
           {navItems.map((item) => (
             <a href={item.href} class="transition hover:text-white">{item.label}</a>
@@ -533,3 +420,14 @@ const toneMap = {
     </div>
   </footer>
 </BaseLayout>
+
+
+
+
+
+
+
+
+
+
+

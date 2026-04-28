@@ -26,8 +26,20 @@
 }
 
 @layer utilities {
+  .font-joaju-logo {
+    font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  }
+
+  .font-joaju-tagline {
+    font-family: "Nunito", "Trebuchet MS", sans-serif;
+  }
+
   .shadow-soft {
     box-shadow: var(--shadow-soft);
+  }
+
+  .text-hero-logo {
+    text-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
   }
 
   .bg-hero-overlay {
