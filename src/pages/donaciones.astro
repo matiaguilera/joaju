@@ -8,12 +8,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,195,0,0.14),transparent_22%),radial-gradient(circle_at_top_right,rgba(255,87,51,0.12),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,255,255,0.72))]"></div>
       <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div data-animate="up">
-          <a href="/" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-joaju-orange transition hover:text-joaju-dark">
+          <a href="/" class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-bold uppercase tracking-[0.16em] text-joaju-orange shadow-sm transition hover:text-joaju-dark">
             ← Volver al inicio
           </a>
-          <span class="mt-6 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-            Donaciones
-          </span>
+          <div class="mt-8">
+            <span class="inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
+              Donaciones
+            </span>
+          </div>
           <h1 class="m-0 mt-4 text-[clamp(2.6rem,6vw,4.8rem)] leading-[0.98] font-black text-joaju-dark">
             ¿Querés apoyar a Joaju?
           </h1>
@@ -35,11 +37,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <form
           data-animate="scale"
-          action="mailto:voluntariado@joaju.org"
+          action="https://formsubmit.co/matytroche@gmail.com"
           method="post"
-          enctype="text/plain"
           class="rounded-[2rem] border border-joaju-dark/10 bg-white p-7 shadow-soft"
         >
+          <input type="hidden" name="_subject" value="Nueva solicitud de ayuda desde Joaju" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="/" />
+          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
           <div class="grid gap-5 md:grid-cols-2">
             <label class="grid gap-2">
               <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Nombre</span>
@@ -56,7 +62,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Correo</span>
               <input
                 type="email"
-                name="correo"
+                name="email"
                 required
                 placeholder="tu@email.com"
                 class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
@@ -87,7 +93,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               </label>
               <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
                 <input type="checkbox" name="ayuda" value="Voluntariado" class="accent-[#ff5733]" />
-                <span>Voluntariado</span>
+                <span>Voluntariado (solo empleados de Datapar)</span>
               </label>
               <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
                 <input type="checkbox" name="ayuda" value="Servicios o alianzas" class="accent-[#ff5733]" />
@@ -109,7 +115,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             type="submit"
             class="mt-8 inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-bold text-white transition hover:-translate-y-0.5 hover:bg-joaju-dark"
           >
-            Enviar formulario
+            Enviar
           </button>
         </form>
       </div>
