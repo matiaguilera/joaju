@@ -142,21 +142,43 @@ const toneMap = {
   </header>
 
   <main>
-    <section id="inicio" class="relative flex h-[calc(100svh-57px)] items-center overflow-clip md:h-[calc(100svh-62px)]">
+    <section id="inicio" class="relative flex min-h-[calc(100svh-57px)] items-center overflow-clip py-16 md:min-h-[calc(100svh-62px)]">
       <div class="bg-hero-overlay absolute inset-0"></div>
-      <div class="relative z-10 mx-auto flex w-[min(1120px,calc(100%-2rem))] justify-center">
-        <div class="text-center text-white" data-animate="up">
-          <div class="glow-yellow absolute left-[8%] top-[18%] h-[160px] w-[160px] rounded-full blur-[70px] max-md:hidden"></div>
-          <div class="glow-orange absolute bottom-[18%] right-[10%] h-[190px] w-[190px] rounded-full blur-[70px] max-md:hidden"></div>
-          <h1 class="font-joaju-logo text-hero-logo m-0 text-[clamp(4rem,10vw,8rem)] leading-[0.86] font-extrabold tracking-[0.01em]">Joaju</h1>
-          <p class="font-joaju-tagline mt-2 text-[clamp(1.3rem,2.7vw,2rem)] font-bold tracking-[0.03em] text-white/88">
+      <div class="absolute inset-0 bg-[linear-gradient(110deg,rgba(10,58,42,0.92)_0%,rgba(10,58,42,0.78)_42%,rgba(10,58,42,0.38)_100%)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-joaju-dark/48 to-transparent"></div>
+      <div class="pointer-events-none absolute left-0 top-0 h-full w-full opacity-20 [background-image:linear-gradient(120deg,transparent_0_44%,rgba(255,195,0,0.45)_44%_45%,transparent_45%_100%),linear-gradient(120deg,transparent_0_58%,rgba(255,87,51,0.5)_58%_59%,transparent_59%_100%)]"></div>
+
+      <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
+        <div class="text-white" data-animate="up">
+          <span class="inline-flex rounded-full border border-white/18 bg-white/10 px-4 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow backdrop-blur">
+            Voluntariado Datapar
+          </span>
+          <h1 class="font-joaju-logo text-hero-logo mt-7 mb-0 text-[clamp(4.8rem,12vw,9.2rem)] leading-[0.82] font-extrabold tracking-[0.01em]">Joaju</h1>
+          <p class="font-joaju-tagline mt-4 max-w-[34rem] text-[clamp(1.35rem,2.8vw,2.2rem)] font-bold leading-tight tracking-[0.03em] text-white/90">
             “Dibujando el futuro”
           </p>
-          <div class="mt-10 flex justify-center">
-            <a class="inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5" href="#voluntariado">
-              ¡Únete a nosotros!
+          <p class="mt-6 max-w-[38rem] text-lg leading-8 text-white/76">
+            Una comunidad que transforma el compromiso humano en acciones concretas para abrazar vidas y abrir oportunidades.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a class="inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5 hover:bg-white" href="#voluntariado">
+              Sumar mi ayuda
+            </a>
+            <a class="inline-flex min-w-[180px] items-center justify-center rounded-2xl border border-white/24 bg-white/10 px-6 py-4 font-extrabold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/18" href="#quienes-somos">
+              Conocer Joaju
             </a>
           </div>
+        </div>
+
+        <div class="relative hidden min-h-[520px] md:block" data-animate="scale">
+          <img src="/historia/historia-4.webp" alt="Voluntariado Joaju" class="absolute right-0 top-4 h-[360px] w-[72%] rounded-[2rem] border border-white/18 object-cover shadow-[0_28px_70px_rgba(0,0,0,0.22)]" />
+          <img src="/historia/historia-2.webp" alt="Encuentro de voluntarios Joaju" class="absolute left-0 bottom-14 h-[245px] w-[54%] rounded-[1.6rem] border border-white/18 object-cover shadow-[0_22px_55px_rgba(0,0,0,0.2)]" />
+          <div class="absolute bottom-0 right-8 w-[min(260px,70%)] rounded-[1.4rem] border border-white/18 bg-white/12 p-5 text-white shadow-[0_18px_45px_rgba(0,0,0,0.16)] backdrop-blur-xl">
+            <span class="text-4xl font-black text-joaju-yellow">+1.000</span>
+            <p class="mt-2 font-bold leading-6 text-white/82">personas llevan una parte de Joaju con ellas</p>
+          </div>
+          <div class="absolute right-12 top-0 h-20 w-20 rounded-full border-[14px] border-joaju-orange/80"></div>
+          <div class="absolute left-16 top-16 h-14 w-14 rotate-12 rounded-xl bg-joaju-yellow/85"></div>
         </div>
       </div>
     </section>
