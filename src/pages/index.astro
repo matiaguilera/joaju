@@ -52,7 +52,6 @@ const announcements = [
   }
 ];
 
-const partners = ["Datapar", "Escuelas Aliadas", "Organizaciones Barriales", "Empresas Amigas", "Voluntarios", "Comunidad"];
 const navItems = [
   { href: "#quienes-somos", label: "Quiénes Somos" },
   { href: "#comite", label: "Comité" },
@@ -353,23 +352,6 @@ const toneMap = {
       </div>
     </section>
 
-    <section class="border-y border-joaju-dark/6 py-24">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Alianzas</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Convenios y alianzas</h2>
-          <p class="mt-4 leading-7 text-joaju-muted">Juntos logramos más.</p>
-        </div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
-          {partners.map((partner, index) => (
-            <div class="grid min-h-[110px] place-items-center rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 text-center font-extrabold text-joaju-muted shadow-soft" data-animate="up" style={`transition-delay:${index * 70}ms`}>
-              {partner}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section id="voluntariado" class="relative overflow-clip py-24 text-white">
       <div class="bg-hero-overlay absolute inset-0"></div>
       <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-12 md:grid-cols-2">
@@ -429,7 +411,6 @@ const toneMap = {
     </div>
   </footer>
 </BaseLayout>
-
 
 
 
