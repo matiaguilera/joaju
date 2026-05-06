@@ -31,6 +31,21 @@ const pillars = [
   }
 ];
 
+const quotes = [
+  {
+    quote: "No subestimes lo que puedes dar. A veces lo que para ti es simple, puede ser extraordinario",
+    name: "Fabricio Caon",
+    role: "Precursor Joaju",
+    image: "/frases/fabricio.webp"
+  },
+  {
+    quote: "Cada acción que nace del corazón, deja huellas",
+    name: "Paz Da Re",
+    role: "Precursora Joaju",
+    image: "/frases/paz.webp"
+  }
+];
+
 const announcements = [
   {
     title: "Banco de Sangre",
@@ -291,6 +306,29 @@ const toneMap = {
       </div>
     </section>
 
+    <section class="bg-white/55 pb-16 pt-4">
+      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
+        <div class="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
+          {quotes.map((item, index) => (
+            <article class="relative overflow-hidden rounded-2xl border border-joaju-dark/8 bg-white/82 p-6 shadow-[0_18px_45px_rgba(10,58,42,0.08)]" data-animate="up" style={`transition-delay:${index * 120}ms`}>
+              <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-joaju-orange/25 via-joaju-orange to-joaju-orange/25"></div>
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
+                <img src={item.image} alt={item.name} class="h-24 w-24 shrink-0 rounded-xl border-4 border-white object-cover shadow-[0_12px_26px_rgba(10,58,42,0.12)]" />
+                <div>
+                  <blockquote class="m-0 text-[1.02rem] font-medium italic leading-7 text-joaju-dark/82">
+                  “{item.quote}”
+                  </blockquote>
+                  <div class="mt-5 h-px w-16 bg-joaju-orange/25"></div>
+                  <p class="mt-4 text-[0.95rem] font-extrabold text-joaju-dark">{item.name}</p>
+                  <p class="mt-1 text-sm font-bold text-joaju-orange/85">{item.role}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="bg-white/55 py-24">
       <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
         <div class="mx-auto max-w-4xl text-center" data-animate="up">
@@ -411,6 +449,3 @@ const toneMap = {
     </div>
   </footer>
 </BaseLayout>
-
-
-
