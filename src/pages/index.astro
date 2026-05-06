@@ -3,19 +3,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { activityYears } from "../data/activities";
 
 const committee = [
+  { name: "Ada Melgarejo", role: "Organizadora", image: "/miembros/ada.webp" },
   { name: "Angélica Vargas", role: "Presidenta", image: "/miembros/angelica.webp" },
-  { name: "Leticia Fernandez", role: "Redes Sociales y Marketing", image: "/miembros/leticia.webp" },
-  { name: "Matías Aguilera", role: "Documentación", image: "/miembros/matias.webp" },
   { name: "Carlos Armoa", role: "Organizador", image: "/miembros/carlos.webp" },
-  { name: "Gabriela Gonzalez", role: "Organizadora", image: "/miembros/gabriela.webp" },
-  { name: "Marcelo Villalba", role: "Organizador", image: "/miembros/marcelo.webp" },
   { name: "Cindy Troche", role: "Organizadora", image: "/miembros/cindy.webp" },
-  { name: "Monserrat Moré", role: "Organizadora", image: "/miembros/montserrat.webp" },
   { name: "Daiana Ruiz", role: "Organizadora", image: "/miembros/daiana.webp" },
   { name: "Diego Melgarejo", role: "Organizador", image: "/miembros/diego.webp" },
-  { name: "Sofia Torres", role: "Organizadora", image: "/miembros/sofia.webp" },
-  { name: "Ada Melgarejo", role: "Organizadora", image: "/miembros/ada.webp" },
-  { name: "Maria Ines Benitez", role: "Organizadora", image: "/miembros/ines.webp" }
+  { name: "Gabriela Gonzalez", role: "Organizadora", image: "/miembros/gabriela.webp" },
+  { name: "Leticia Fernandez", role: "Redes Sociales y Marketing", image: "/miembros/leticia.webp" },
+  { name: "Marcelo Villalba", role: "Organizador", image: "/miembros/marcelo.webp" },
+  { name: "Maria Ines Benitez", role: "Organizadora", image: "/miembros/ines.webp" },
+  { name: "Matías Aguilera", role: "Documentación", image: "/miembros/matias.webp" },
+  { name: "Monserrat Moré", role: "Organizadora", image: "/miembros/montserrat.webp" },
+  { name: "Sofia Torres", role: "Organizadora", image: "/miembros/sofia.webp" }
 ];
 
 const pillars = [
@@ -259,9 +259,9 @@ const toneMap = {
           <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Equipo</span>
           <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Nuestro comité</h2>
         </div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-wrap justify-center gap-6">
           {committee.map((person, index) => (
-            <article class="rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 text-center shadow-soft" data-animate="up" style={`transition-delay:${index * 90}ms`}>
+            <article class="w-full rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 text-center shadow-soft sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]" data-animate="up" style={`transition-delay:${index * 90}ms`}>
               <img src={person.image} alt={person.name} class="mx-auto mb-4 h-[132px] w-[132px] rounded-full border-[5px] border-white object-cover shadow-[0_16px_30px_rgba(10,58,42,0.12)]" />
               <h3 class="m-0 text-[1.45rem] font-bold">{person.name}</h3>
               <p class="mt-2 font-bold text-joaju-orange">{person.role}</p>
@@ -429,7 +429,6 @@ const toneMap = {
     </div>
   </footer>
 </BaseLayout>
-
 
 
 
