@@ -449,6 +449,49 @@ export const activities: ActivityItem[] = [
     location: "Paraguay"
   },
   {
+    slug: "bienestar-integral-salud-mental",
+    year: 2025,
+    title: "Bienestar Integral y Salud Mental",
+    summary: "Actividad orientada a promover el bienestar integral y la salud mental en el entorno laboral.",
+    description: [
+      "En agosto se realizó una actividad con foco en el bienestar integral y la salud mental.",
+      "El objetivo fue promover hábitos, conversaciones y herramientas de cuidado dentro del entorno laboral.",
+      "La iniciativa buscó acompañar a colaboradores y participantes desde una mirada humana y preventiva."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Paraguay"
+  },
+  {
+    slug: "auspicio-comunidad-km-7-ciudad-nueva",
+    year: 2025,
+    title: "Auspicio Comunidad Km 7",
+    summary: "Participación como auspiciante con una donación simbólica de golosinas para la comunidad del Km 7.",
+    description: [
+      "En agosto Joaju participó como auspiciante con una donación simbólica de golosinas.",
+      "La actividad benefició a la comunidad del Km 7, Barrio Ciudad Nueva.",
+      "El acompañamiento permitió estar presentes en una iniciativa comunitaria desde un gesto cercano y solidario."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Km 7, Barrio Ciudad Nueva"
+  },
+  {
+    slug: "donacion-comunidad-indigena-km-12-monday",
+    year: 2025,
+    title: "Donación a Comunidad Indígena",
+    summary: "Donación de 25 cajas con alimentos no perecederos y artículos de primera necesidad.",
+    description: [
+      "En octubre se realizó una donación destinada a una comunidad indígena ubicada en Km 12 Monday, Ciudad del Este.",
+      "La actividad fue organizada por todos los miembros del Comité Joaju y compañeros de Datapar.",
+      "La acción benefició directamente a 25 familias, aproximadamente 70 personas.",
+      "Se entregaron 25 cajas con más de 250 alimentos no perecederos y artículos de primera necesidad."
+    ],
+    gallery: [],
+    dateLabel: "Octubre",
+    location: "Km 12 Monday, Ciudad del Este"
+  },
+  {
     slug: "banco-de-sangre",
     year: 2026,
     title: "Banco de Sangre",
