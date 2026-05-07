@@ -15,6 +15,7 @@ export function getStaticPaths() {
 }
 
 const { activity } = Astro.props;
+const gallery = activity.gallery ?? [];
 ---
 
 <BaseLayout title={`${activity.title} | Joaju`}>
@@ -27,9 +28,11 @@ const { activity } = Astro.props;
         ← Volver a {activity.year}
       </a>
 
-      <div class="mt-8 overflow-hidden rounded-[2rem] border border-joaju-dark/10 bg-white shadow-soft">
-        <img src={activity.heroImage} alt={activity.title} fetchpriority="high" decoding="async" class="h-[360px] w-full object-cover md:h-[460px]" />
-      </div>
+      {activity.heroImage && (
+        <div class="mt-8 overflow-hidden rounded-[2rem] border border-joaju-dark/10 bg-white shadow-soft">
+          <img src={activity.heroImage} alt={activity.title} fetchpriority="high" decoding="async" class="h-[360px] w-full object-cover md:h-[460px]" />
+        </div>
+      )}
 
       <div class="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
@@ -67,6 +70,7 @@ const { activity } = Astro.props;
       </div>
     </section>
 
+    {gallery.length > 0 && (
     <section class="mx-auto mt-20 w-[min(1120px,calc(100%-2rem))]">
       <div class="max-w-3xl">
         <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
@@ -78,7 +82,7 @@ const { activity } = Astro.props;
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {activity.gallery.map((image: string, index: number) => (
+        {gallery.map((image: string, index: number) => (
           <div class="overflow-hidden rounded-[1.6rem] border border-joaju-dark/10 bg-white shadow-soft">
             <img
               src={image}
@@ -91,5 +95,6 @@ const { activity } = Astro.props;
         ))}
       </div>
     </section>
+    )}
   </main>
 </BaseLayout>

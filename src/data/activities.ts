@@ -4,7 +4,7 @@ export type ActivityItem = {
   title: string;
   summary: string;
   description: string[];
-  heroImage: string;
+  heroImage?: string;
   gallery: string[];
   dateLabel: string;
   location: string;
@@ -14,118 +14,270 @@ export const activityYears = [2022, 2023, 2024, 2025, 2026];
 
 export const activities: ActivityItem[] = [
   {
-    slug: "primeras-alianzas-comunitarias",
+    slug: "colecta-amsap",
     year: 2022,
-    title: "Primeras Alianzas Comunitarias",
-    summary: "Inicio del trabajo conjunto con organizaciones amigas para ampliar el alcance de Joaju.",
+    title: "Colecta AMSAP",
+    summary: "Participación de más de 20 voluntarios en una jornada solidaria para niñas y niños.",
     description: [
-      "Durante 2022 dimos los primeros pasos para consolidar a Joaju como una red de voluntariado con presencia real en la comunidad.",
-      "Esta etapa estuvo marcada por reuniones con referentes locales, definición de prioridades y jornadas de integración para construir confianza con las personas y organizaciones vinculadas al proyecto.",
-      "Las alianzas formadas permitieron sentar bases para futuras campañas, sumar manos voluntarias y dar forma a una identidad solidaria sostenida en el tiempo."
+      "Más de 20 voluntarios participaron en la colecta de la Asociación Manos Solidarias de Alto Paraná (AMSAP).",
+      "La jornada solidaria estuvo orientada a acompañar a niñas y niños de la comunidad.",
+      "La actividad benefició a 160 niñas y niños, reforzando el compromiso de Joaju con acciones cercanas y concretas."
     ],
-    heroImage: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=700&q=75"
-    ],
-    dateLabel: "Agosto 2022",
-    location: "Asunción, Paraguay"
+    gallery: [],
+    dateLabel: "Febrero",
+    location: "Alto Paraná, Paraguay"
   },
   {
-    slug: "jornadas-de-integracion-social",
+    slug: "donacion-prendas-polideportivo-municipal",
     year: 2022,
-    title: "Jornadas de Integración Social",
-    summary: "Encuentros para activar la participación voluntaria y fortalecer el vínculo humano en territorio.",
+    title: "Donación de Prendas",
+    summary: "Donación de más de 100 prendas de vestir para el albergue del Polideportivo Municipal.",
     description: [
-      "Las jornadas de integración reunieron a voluntarios, familias y organizaciones en espacios pensados para compartir, escuchar y proyectar acciones conjuntas.",
-      "Se realizaron dinámicas recreativas, actividades de acompañamiento y momentos de conversación para identificar necesidades prioritarias dentro de cada comunidad.",
-      "La experiencia dejó aprendizajes valiosos y mostró que la cercanía humana es una de las principales fortalezas del programa."
+      "En mayo se realizó una donación de más de 100 prendas de vestir.",
+      "La entrega fue destinada al albergue del Polideportivo Municipal, acompañando a personas que necesitaban abrigo y apoyo material.",
+      "La acción reunió aportes solidarios y permitió responder a una necesidad concreta de la comunidad."
     ],
-    heroImage: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=75"
-    ],
-    dateLabel: "Noviembre 2022",
-    location: "Gran Asunción"
+    gallery: [],
+    dateLabel: "Mayo",
+    location: "Ciudad del Este, Paraguay"
   },
   {
-    slug: "expansion-del-voluntariado",
+    slug: "educacion-financiera-hogar-las-tias",
+    year: 2022,
+    title: "Educación Financiera",
+    summary: "Charlas para jóvenes y apoyo económico al Hogar las tías, con una recaudación de G. 19.529.000.",
+    description: [
+      "En junio se realizaron charlas sobre educación financiera para jóvenes.",
+      "La actividad también incluyó apoyo económico al Hogar las tías.",
+      "Gracias al compromiso de la comunidad, se logró una recaudación de G. 19.529.000."
+    ],
+    gallery: [],
+    dateLabel: "Junio",
+    location: "Paraguay"
+  },
+  {
+    slug: "donacion-juguetes-snacks-bilal-esgaib",
+    year: 2022,
+    title: "Donación a Bilal Esgaib",
+    summary: "Donación de juguetes y snacks a la Asociación Benéfica Bilal Esgaib.",
+    description: [
+      "En agosto se realizó una donación de juguetes y snacks a la Asociación Benéfica Bilal Esgaib.",
+      "La acción buscó compartir un momento de alegría y acompañamiento con niñas y niños vinculados a la asociación.",
+      "Cada aporte fue preparado con el espíritu cercano y solidario que caracteriza a Joaju."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Paraguay"
+  },
+  {
+    slug: "aprendizaje-hogar-las-tias",
+    year: 2022,
+    title: "Programa de Aprendizaje",
+    summary: "Programa en el Hogar las tías, beneficiando a 50 niños y adolescentes.",
+    description: [
+      "En octubre se desarrolló el Programa de Aprendizaje en el Hogar las tías, beneficiando a 50 niños y adolescentes.",
+      "La actividad acompañó procesos educativos y de crecimiento para fortalecer oportunidades de aprendizaje."
+    ],
+    gallery: [],
+    dateLabel: "Octubre",
+    location: "Paraguay"
+  },
+  {
+    slug: "donacion-equipos-san-felix",
+    year: 2022,
+    title: "Donación de Equipos Informáticos",
+    summary: "Donación de 7 equipos informáticos a la Obra Social San Félix de Cantalicio.",
+    description: [
+      "El 6 de diciembre se realizó la donación de 7 equipos informáticos a la Obra Social San Félix de Cantalicio.",
+      "La actividad buscó fortalecer oportunidades de aprendizaje y acceso a herramientas digitales.",
+      "Esta acción acompañó procesos educativos y de crecimiento para la comunidad beneficiada."
+    ],
+    gallery: [],
+    dateLabel: "Diciembre",
+    location: "Paraguay"
+  },
+  {
+    slug: "colecta-juntos-para-abrigarte",
     year: 2023,
-    title: "Expansión del Voluntariado",
-    summary: "Más personas, nuevas ideas y una agenda de acciones con mayor continuidad.",
+    title: "Juntos para Abrigarte",
+    summary: "Colecta de abrigos entregados en la Junta Municipal de Ciudad del Este.",
     description: [
-      "En 2023 Joaju amplió su red de participación con nuevos voluntarios, familiares y colaboradores cercanos a Datapar.",
-      "La incorporación de más personas permitió organizar mejor cada actividad y abrir espacios para la planificación, la logística y la comunicación.",
-      "Este crecimiento consolidó al programa como una comunidad activa con energía para sostener proyectos solidarios durante todo el año."
+      "En mayo se realizó una colecta de abrigos en el marco de la campaña Juntos para abrigarte.",
+      "Los abrigos reunidos fueron entregados en la Junta Municipal de Ciudad del Este.",
+      "La actividad acompañó a la comunidad con una acción concreta de cuidado y solidaridad."
     ],
-    heroImage: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=700&q=75"
-    ],
-    dateLabel: "Junio 2023",
-    location: "Asunción, Paraguay"
+    gallery: [],
+    dateLabel: "Mayo",
+    location: "Ciudad del Este, Paraguay"
   },
   {
-    slug: "colecta-solidaria-de-fin-de-ano",
+    slug: "dia-del-nino-asentamiento-13-de-junio",
     year: 2023,
-    title: "Colecta Solidaria de Fin de Año",
-    summary: "Campaña de cierre anual enfocada en reunir insumos y regalos para familias acompañadas por el programa.",
+    title: "Día del Niño",
+    summary: "Conmemoración del Día del Niño en el asentamiento 13 de junio de Hernandarias.",
     description: [
-      "La colecta de fin de año reunió alimentos, juguetes, prendas y artículos esenciales a través del apoyo de voluntarios y aliados.",
-      "Cada donación fue preparada y entregada con una lógica de cercanía, priorizando el encuentro con las personas por encima de la simple entrega material.",
-      "La actividad dejó una huella especial por el nivel de compromiso colectivo y la emoción compartida en cada visita."
+      "En agosto se conmemoró el Día del Niño en el asentamiento 13 de junio.",
+      "La actividad se realizó en la ciudad de Hernandarias.",
+      "Fue una jornada de cercanía, celebración y acompañamiento para niñas y niños de la comunidad."
     ],
-    heroImage: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1484627147104-f5197bcd6651?auto=format&fit=crop&w=700&q=75"
-    ],
-    dateLabel: "Diciembre 2023",
-    location: "Asunción, Paraguay"
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Hernandarias, Paraguay"
   },
   {
-    slug: "utiles-escolares-y-apoyo-educativo",
-    year: 2024,
-    title: "Útiles Escolares y Apoyo Educativo",
-    summary: "Entrega de materiales y acompañamiento para fortalecer trayectorias escolares.",
+    slug: "charla-donacion-de-sangre",
+    year: 2023,
+    title: "Charla sobre Donación de Sangre",
+    summary: "Charla informativa sobre la importancia de la donación de sangre.",
     description: [
-      "Durante esta actividad se organizaron kits escolares y espacios de intercambio con niños, adolescentes y familias.",
-      "La propuesta buscó aliviar barreras de acceso a materiales básicos y, al mismo tiempo, transmitir un mensaje de apoyo y continuidad educativa.",
-      "Fue una experiencia muy movilizadora, marcada por la participación activa de voluntarios en la preparación, clasificación y entrega."
+      "En agosto se realizó una charla informativa sobre la importancia de la donación de sangre.",
+      "El espacio buscó sensibilizar y compartir información útil sobre el impacto de donar.",
+      "La actividad reforzó el compromiso de Joaju con iniciativas que pueden salvar vidas."
     ],
-    heroImage: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=700&q=75"
-    ],
-    dateLabel: "Febrero 2024",
-    location: "Central, Paraguay"
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Paraguay"
   },
   {
-    slug: "jornada-recreativa-comunitaria",
-    year: 2024,
-    title: "Jornada Recreativa Comunitaria",
-    summary: "Un día de juegos, escucha y actividades compartidas para reforzar la unión comunitaria.",
+    slug: "acondicionador-casa-de-la-misericordia",
+    year: 2023,
+    title: "Entrega a Casa de la Misericordia",
+    summary: "Compra y entrega de un acondicionador de aire a la Casa de la Misericordia.",
     description: [
-      "La jornada recreativa reunió a voluntarios y vecinos en una propuesta orientada a generar encuentro, alegría y participación.",
-      "Hubo juegos colaborativos, espacios artísticos y momentos de integración pensados para todas las edades.",
-      "La experiencia reafirmó que la recreación también puede ser una herramienta de contención y acompañamiento."
+      "En noviembre se realizó la compra y entrega de un acondicionador de aire a la Casa de la Misericordia.",
+      "La institución está ubicada en el km 8 de Ciudad del Este.",
+      "La donación buscó mejorar las condiciones del espacio y acompañar su labor comunitaria."
     ],
-    heroImage: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=700&q=75"
+    gallery: [],
+    dateLabel: "Noviembre",
+    location: "Ciudad del Este, Paraguay"
+  },
+  {
+    slug: "talleres-herramientas-digitales",
+    year: 2023,
+    title: "Talleres de Herramientas Digitales",
+    summary: "Charlas y cursos sobre máquinas, Gmail, documentos, hojas de cálculo y elaboración de curriculum.",
+    description: [
+      "En diciembre se realizó la charla No temas a las máquinas.",
+      "También se desarrollaron los cursos taller Crea e intercambia correos con Gmail y Gestiona documentos y hojas de cálculo con Google.",
+      "La agenda incluyó un taller de elaboración de curriculum para fortalecer herramientas prácticas de desarrollo personal y laboral."
     ],
-    dateLabel: "Julio 2024",
-    location: "Asunción, Paraguay"
+    gallery: [],
+    dateLabel: "Diciembre",
+    location: "Paraguay"
+  },
+  {
+    slug: "utiles-colegio-santa-teresa",
+    year: 2024,
+    title: "Entrega de Útiles Escolares",
+    summary: "Entrega de útiles escolares, libros y materiales de oficina en el Colegio Santa Teresa de Jesús.",
+    description: [
+      "En febrero se realizó una entrega en el Colegio Santa Teresa de Jesús, ubicado en el Barrio San Rafael.",
+      "Aproximadamente 200 niños, adolescentes y profesores recibieron útiles escolares, libros y materiales de oficina.",
+      "La actividad buscó acompañar el inicio del año escolar y fortalecer el acceso a recursos educativos."
+    ],
+    gallery: [],
+    dateLabel: "Febrero",
+    location: "Barrio San Rafael, Paraguay"
+  },
+  {
+    slug: "mochilas-san-antonio-hogar-las-tias",
+    year: 2024,
+    title: "Entrega de Mochilas",
+    summary: "Entrega de mochilas a la Escuela Básica San Antonio y presencia en la inauguración de la Fundación Hogar Las Tías.",
+    description: [
+      "En marzo se realizó la entrega de mochilas a la Escuela Básica San Antonio del Barrio San Agustín.",
+      "Joaju también estuvo presente en la inauguración de la Fundación Hogar Las Tías.",
+      "La actividad reunió apoyo educativo y acompañamiento a espacios comunitarios vinculados a la niñez."
+    ],
+    gallery: [],
+    dateLabel: "Marzo",
+    location: "Barrio San Agustín, Paraguay"
+  },
+  {
+    slug: "minga-ambiental-santa-teresa",
+    year: 2024,
+    title: "Minga Ambiental",
+    summary: "Jornada ambiental en la Escuela y Colegio Santa Teresa de Jesús con limpieza, donaciones y sensibilización.",
+    description: [
+      "En abril se realizó una minga ambiental en la Escuela y Colegio Santa Teresa de Jesús.",
+      "Durante la jornada del 20-04-24 se ejecutaron actividades de limpieza y embellecimiento del entorno escolar, junto con la donación de insumos de limpieza para la institución.",
+      "También se realizó sensibilización sobre el cuidado del medio ambiente, con provisión de trípticos con informaciones claves.",
+      "La actividad incluyó la donación de 10 bancos de palets y 4 basureros de metal."
+    ],
+    gallery: [],
+    dateLabel: "Abril",
+    location: "Paraguay"
+  },
+  {
+    slug: "donacion-de-sangre-ediciones-2024",
+    year: 2024,
+    title: "Donación de Sangre",
+    summary: "2da, 3era y 4ta edición de la jornada de donación de sangre.",
+    description: [
+      "Durante enero, mayo y noviembre se realizaron nuevas ediciones de la jornada de donación de sangre.",
+      "Estas actividades correspondieron a la 2da, 3era y 4ta edición.",
+      "La iniciativa sostuvo la promoción de la donación voluntaria como una forma concreta de ayudar a salvar vidas."
+    ],
+    gallery: [],
+    dateLabel: "Enero, mayo y noviembre",
+    location: "Paraguay"
+  },
+  {
+    slug: "todos-por-rio-grande-do-sul",
+    year: 2024,
+    title: "Todos por Rio Grande do Sul",
+    summary: "Donación de alimentos, ropa y artículos de higiene para apoyar a comunidades afectadas en Brasil.",
+    description: [
+      "Del 13 al 18 de mayo se desarrolló el proyecto Todos por Rio Grande do Sul, Brasil.",
+      "La actividad consistió en la donación de alimentos, ropa y artículos de higiene.",
+      "El objetivo fue apoyar a comunidades afectadas y canalizar la solidaridad hacia una necesidad urgente."
+    ],
+    gallery: [],
+    dateLabel: "Mayo",
+    location: "Brasil"
+  },
+  {
+    slug: "festividad-de-san-juan",
+    year: 2024,
+    title: "Festividad de San Juan",
+    summary: "Celebración de la Festividad de San Juan.",
+    description: [
+      "En julio se realizó una actividad vinculada a la Festividad de San Juan.",
+      "La jornada abrió un espacio de encuentro comunitario, tradición y participación.",
+      "Fue una oportunidad para fortalecer vínculos a través de una celebración compartida."
+    ],
+    gallery: [],
+    dateLabel: "Julio",
+    location: "Paraguay"
+  },
+  {
+    slug: "dia-del-donante-voluntario",
+    year: 2024,
+    title: "Día del Donante Voluntario",
+    summary: "Donación de souvenirs y difusión de un video de concienciación sobre la donación voluntaria de sangre.",
+    description: [
+      "En julio se realizó la donación de souvenirs para el Día del Donante Voluntario de Sangre.",
+      "También se difundió un video de concienciación acerca de la importancia de la donación voluntaria de sangre.",
+      "La acción buscó reconocer a los donantes y promover una cultura de compromiso solidario."
+    ],
+    gallery: [],
+    dateLabel: "Julio",
+    location: "Paraguay"
+  },
+  {
+    slug: "charla-sobre-voluntariado",
+    year: 2024,
+    title: "Charla sobre Voluntariado",
+    summary: "Reflexión sobre el impacto positivo de ser voluntario en la comunidad.",
+    description: [
+      "En julio se realizó una charla sobre voluntariado.",
+      "El espacio propuso una reflexión sobre el impacto positivo de ser voluntario en la comunidad.",
+      "La actividad reforzó el valor del compromiso, la participación y la acción solidaria."
+    ],
+    gallery: [],
+    dateLabel: "Julio",
+    location: "Paraguay"
   },
   {
     slug: "campana-dibujando-el-futuro",
@@ -143,7 +295,7 @@ export const activities: ActivityItem[] = [
       "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=700&q=75",
       "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=700&q=75"
     ],
-    dateLabel: "Marzo 2025",
+    dateLabel: "Marzo",
     location: "Asunción y alrededores"
   },
   {
@@ -162,7 +314,7 @@ export const activities: ActivityItem[] = [
       "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=700&q=75",
       "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=700&q=75"
     ],
-    dateLabel: "Septiembre 2025",
+    dateLabel: "Septiembre",
     location: "Central, Paraguay"
   },
   {
@@ -181,7 +333,7 @@ export const activities: ActivityItem[] = [
       "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=700&q=75",
       "https://images.unsplash.com/photo-1581595219315-a187dd40c322?auto=format&fit=crop&w=700&q=75"
     ],
-    dateLabel: "Abril 2026",
+    dateLabel: "Abril",
     location: "Asunción, Paraguay"
   },
   {
@@ -200,7 +352,7 @@ export const activities: ActivityItem[] = [
       "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=700&q=75",
       "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=700&q=75"
     ],
-    dateLabel: "Junio 2026",
+    dateLabel: "Junio",
     location: "Asunción, Paraguay"
   },
   {
@@ -219,7 +371,7 @@ export const activities: ActivityItem[] = [
       "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=75",
       "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=75"
     ],
-    dateLabel: "Invierno 2026",
+    dateLabel: "Invierno",
     location: "Asunción y Central"
   }
 ];
