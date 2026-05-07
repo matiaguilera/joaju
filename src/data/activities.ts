@@ -280,6 +280,76 @@ export const activities: ActivityItem[] = [
     location: "Paraguay"
   },
   {
+    slug: "colecta-anual-apostar-por-la-vida",
+    year: 2024,
+    title: "Colecta Anual Apostar por la Vida",
+    summary: "Donación de G. 500.000 en la Colecta Anual de la Fundación Apostar por la Vida.",
+    description: [
+      "El 9 y 10 de agosto se realizó la Colecta Anual de la Fundación Apostar por la Vida.",
+      "Joaju acompañó la iniciativa con una donación de G. 500.000.",
+      "La acción permitió apoyar el trabajo solidario de la fundación y su impacto en la comunidad."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Paraguay"
+  },
+  {
+    slug: "proyecto-nino-feliz",
+    year: 2024,
+    title: "Proyecto Niño Feliz",
+    summary: "Donación de insumos médicos para pediatría en el marco del Proyecto Niño Feliz.",
+    description: [
+      "El 28 de agosto se realizó el Proyecto Niño Feliz.",
+      "La actividad consistió en la donación de insumos médicos para pediatría.",
+      "El aporte buscó acompañar la atención de niñas y niños desde una necesidad concreta del área de salud."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Paraguay"
+  },
+  {
+    slug: "donacion-mobiliario-santa-teresa-hospital-regional",
+    year: 2024,
+    title: "Donación de Mobiliario",
+    summary: "Donación de mobiliario al Colegio Santa Teresa de Jesús y al Hospital Regional de Ciudad del Este.",
+    description: [
+      "El 26 de agosto se realizó una donación al Colegio Santa Teresa de Jesús.",
+      "La entrega incluyó 4 escritorios, 1 silla de oficina y 1 pizarra.",
+      "También se realizó una donación al Hospital Regional de Ciudad del Este, consistente en 4 escritorios."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Ciudad del Este, Paraguay"
+  },
+  {
+    slug: "insumos-hospital-ciudad-del-este",
+    year: 2024,
+    title: "Donación al Hospital de Ciudad del Este",
+    summary: "Donación de productos de limpieza y porta sueros al Hospital de Ciudad del Este.",
+    description: [
+      "En noviembre se realizó una donación de insumos al Hospital de Ciudad del Este.",
+      "La entrega incluyó productos de limpieza y porta sueros.",
+      "La actividad acompañó necesidades operativas de la institución de salud."
+    ],
+    gallery: [],
+    dateLabel: "Noviembre",
+    location: "Ciudad del Este, Paraguay"
+  },
+  {
+    slug: "donacion-hemocentro-cde",
+    year: 2024,
+    title: "Donación al Hemocentro CDE",
+    summary: "Donación de hojas impresas y un banner para el Hemocentro CDE.",
+    description: [
+      "En diciembre se realizó una donación para el Hemocentro CDE.",
+      "La entrega incluyó 1 resma de hojas impresas para interrogatorio de donantes.",
+      "También se donó 1 banner para acompañar las actividades del Hemocentro CDE."
+    ],
+    gallery: [],
+    dateLabel: "Diciembre",
+    location: "Ciudad del Este, Paraguay"
+  },
+  {
     slug: "campana-dibujando-el-futuro",
     year: 2025,
     title: "Campaña Dibujando el Futuro",
