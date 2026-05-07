@@ -45,11 +45,11 @@ export const activities: ActivityItem[] = [
     slug: "educacion-financiera-hogar-las-tias",
     year: 2022,
     title: "Educación Financiera",
-    summary: "Charlas para jóvenes y apoyo económico al Hogar las tías, con una recaudación de G. 19.529.000.",
+    summary: "Charlas para jóvenes y apoyo económico al Hogar las tías.",
     description: [
       "En junio se realizaron charlas sobre educación financiera para jóvenes.",
       "La actividad también incluyó apoyo económico al Hogar las tías.",
-      "Gracias al compromiso de la comunidad, se logró una recaudación de G. 19.529.000."
+      "Gracias al compromiso de la comunidad, se logró reunir apoyo para acompañar al hogar."
     ],
     gallery: [],
     dateLabel: "Junio",
@@ -283,10 +283,10 @@ export const activities: ActivityItem[] = [
     slug: "colecta-anual-apostar-por-la-vida",
     year: 2024,
     title: "Colecta Anual Apostar por la Vida",
-    summary: "Donación de G. 500.000 en la Colecta Anual de la Fundación Apostar por la Vida.",
+    summary: "Donación en la Colecta Anual de la Fundación Apostar por la Vida.",
     description: [
       "El 9 y 10 de agosto se realizó la Colecta Anual de la Fundación Apostar por la Vida.",
-      "Joaju acompañó la iniciativa con una donación de G. 500.000.",
+      "Joaju acompañó la iniciativa con una donación.",
       "La acción permitió apoyar el trabajo solidario de la fundación y su impacto en la comunidad."
     ],
     gallery: [],
