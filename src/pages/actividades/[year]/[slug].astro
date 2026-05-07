@@ -28,7 +28,7 @@ const { activity } = Astro.props;
       </a>
 
       <div class="mt-8 overflow-hidden rounded-[2rem] border border-joaju-dark/10 bg-white shadow-soft">
-        <img src={activity.heroImage} alt={activity.title} class="h-[360px] w-full object-cover md:h-[460px]" />
+        <img src={activity.heroImage} alt={activity.title} fetchpriority="high" decoding="async" class="h-[360px] w-full object-cover md:h-[460px]" />
       </div>
 
       <div class="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
@@ -83,6 +83,8 @@ const { activity } = Astro.props;
             <img
               src={image}
               alt={`${activity.title} - foto ${index + 1}`}
+              loading="lazy"
+              decoding="async"
               class="h-72 w-full object-cover transition duration-500 hover:scale-105"
             />
           </div>

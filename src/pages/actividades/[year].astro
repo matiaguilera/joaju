@@ -44,6 +44,8 @@ const { year, items } = Astro.props;
               <img
                 src={activity.heroImage}
                 alt={activity.title}
+                loading="lazy"
+                decoding="async"
                 class="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
               />
             </div>
