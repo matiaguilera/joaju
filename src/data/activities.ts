@@ -350,42 +350,103 @@ export const activities: ActivityItem[] = [
     location: "Ciudad del Este, Paraguay"
   },
   {
-    slug: "campana-dibujando-el-futuro",
+    slug: "utiles-escuela-santa-barbara",
     year: 2025,
-    title: "Campaña Dibujando el Futuro",
-    summary: "Acción principal del año con foco en acompañamiento, colectas y fortalecimiento comunitario.",
+    title: "Entrega a Escuela Santa Bárbara",
+    summary: "Entrega de útiles escolares y 10 ventiladores de pared a la Escuela Básica N.º 3499 Santa Bárbara.",
     description: [
-      "Esta campaña reunió distintas líneas de trabajo en una misma narrativa: acompañar, escuchar y generar oportunidades reales.",
-      "Se realizaron colectas, encuentros solidarios y actividades de fortalecimiento orientadas a personas en situación vulnerable.",
-      "La campaña sintetiza el espíritu de Joaju al combinar organización, cercanía y compromiso humano."
+      "En marzo se acompañó a la Escuela Básica N.º 3499 Santa Bárbara, ubicada en Colonia Félix de Azara, Hernandarias.",
+      "La acción benefició directamente a 269 estudiantes de nivel inicial, primer y segundo ciclo.",
+      "Se entregaron más de 300 artículos escolares, entre cuadernos, lápices, carpetas, mochilas y otros materiales.",
+      "También se realizó la entrega de 10 ventiladores de pared para la institución."
     ],
-    heroImage: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1453749024868-69789a8485aa?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=700&q=75"
-    ],
+    gallery: [],
     dateLabel: "Marzo",
-    location: "Asunción y alrededores"
+    location: "Colonia Félix de Azara, Hernandarias"
   },
   {
-    slug: "manos-que-acompanan",
+    slug: "formularios-hemocentro-cde",
     year: 2025,
-    title: "Manos que Acompañan",
-    summary: "Visitas, contención y apoyo directo a personas y familias vinculadas a Joaju.",
+    title: "Apoyo Operativo al Hemocentro CDE",
+    summary: "Entrega de formularios requeridos para apoyo operativo al Hemocentro de Ciudad del Este.",
     description: [
-      "Manos que Acompañan nació como una actividad para poner en valor la presencia y el tiempo compartido.",
-      "Los voluntarios realizaron visitas planificadas, entregas puntuales y espacios de escucha activa para reforzar el acompañamiento cercano.",
-      "Más que una acción aislada, fue una experiencia que fortaleció el sentido de comunidad dentro del programa."
+      "En marzo se realizó una entrega destinada al Hemocentro de Ciudad del Este.",
+      "La acción consistió en la entrega de formularios requeridos para apoyo operativo.",
+      "El aporte buscó acompañar tareas internas necesarias para el funcionamiento del servicio."
     ],
-    heroImage: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1000&q=75",
-    gallery: [
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=700&q=75",
-      "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=700&q=75"
+    gallery: [],
+    dateLabel: "Marzo",
+    location: "Ciudad del Este, Paraguay"
+  },
+  {
+    slug: "acondicionador-hospital-regional-cde",
+    year: 2025,
+    title: "Donación al Hospital Regional CDE",
+    summary: "Donación de un acondicionador de aire al Hospital Regional de Ciudad del Este.",
+    description: [
+      "En abril se realizó una donación al Hospital Regional de Ciudad del Este.",
+      "La acción fue realizada por Datapar.",
+      "La donación consistió en un acondicionador de aire para acompañar necesidades de la institución."
     ],
-    dateLabel: "Septiembre",
-    location: "Central, Paraguay"
+    gallery: [],
+    dateLabel: "Abril",
+    location: "Ciudad del Este, Paraguay"
+  },
+  {
+    slug: "bebederos-escuela-minga-guazu-san-marcos",
+    year: 2025,
+    title: "Donación de Bebederos",
+    summary: "Donación de 3 bebederos a la Escuela Minga Guazú - San Marcos.",
+    description: [
+      "En mayo se realizó una donación a la Escuela Minga Guazú - San Marcos.",
+      "La acción fue realizada por Datapar.",
+      "La entrega consistió en 3 bebederos para la institución."
+    ],
+    gallery: [],
+    dateLabel: "Mayo",
+    location: "Minga Guazú, Paraguay"
+  },
+  {
+    slug: "charla-salud-financiera",
+    year: 2025,
+    title: "Charla Educativa: Salud Financiera",
+    summary: "Charla educativa sobre salud financiera con la economista María Noelia Vargas.",
+    description: [
+      "En junio se realizó una charla educativa sobre salud financiera.",
+      "La disertante fue la economista María Noelia Vargas.",
+      "El objetivo fue promover la educación financiera entre colaboradores y participantes."
+    ],
+    gallery: [],
+    dateLabel: "Junio",
+    location: "Paraguay"
+  },
+  {
+    slug: "aero-san-juan-hernandarias",
+    year: 2025,
+    title: "Participación en Aero San Juan",
+    summary: "Participación en el evento solidario Aero San Juan en Hernandarias.",
+    description: [
+      "En julio Joaju participó en el evento solidario Aero San Juan, realizado en Hernandarias.",
+      "El propósito del evento fue la recaudación de fondos para causas sociales.",
+      "La participación permitió acompañar una iniciativa comunitaria orientada al apoyo solidario."
+    ],
+    gallery: [],
+    dateLabel: "Julio",
+    location: "Hernandarias, Paraguay"
+  },
+  {
+    slug: "colecta-anual-apostar-por-la-vida-2025",
+    year: 2025,
+    title: "Colecta Anual Apostar por la Vida",
+    summary: "Participación en la Colecta Anual Apostar por la Vida.",
+    description: [
+      "En agosto Joaju participó en el evento solidario Colecta Anual - Apostar por la Vida.",
+      "La actividad formó parte de las acciones solidarias del año.",
+      "La participación acompañó una causa social orientada a generar apoyo desde la comunidad."
+    ],
+    gallery: [],
+    dateLabel: "Agosto",
+    location: "Paraguay"
   },
   {
     slug: "banco-de-sangre",
