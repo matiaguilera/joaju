@@ -18,7 +18,16 @@ const { title = "Joaju - Dibujando el Futuro" } = Astro.props;
     <link
       rel="preload"
       as="image"
-      href="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80"
+      href="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=760&q=70"
+      media="(max-width: 767px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80"
+      media="(min-width: 768px)"
+      fetchpriority="high"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@600;700&display=swap"
