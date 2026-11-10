@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "joaju",
+      "runtimeExecutable": "C:\\Users\\Admin-Datapar\\AppData\\Local\\Author Software\\nvm\\installs\\v24.18.0\\node.exe",
+      "runtimeArgs": ["node_modules/astro/astro.js", "dev", "--port", "4321"],
+      "port": 4321
+    }
+  ]
+}

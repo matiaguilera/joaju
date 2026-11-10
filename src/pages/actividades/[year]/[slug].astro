@@ -3,98 +3,119 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { activities } from "../../../data/activities";
 
 export function getStaticPaths() {
-  return activities.map((activity) => ({
+  return activities.map((activity, index) => ({
     params: {
       year: String(activity.year),
       slug: activity.slug
     },
     props: {
-      activity
+      activity,
+      previous: activities[index - 1] ?? null,
+      next: activities[index + 1] ?? null
     }
   }));
 }
 
-const { activity } = Astro.props;
+const { activity, previous, next } = Astro.props;
 const gallery = activity.gallery ?? [];
+const activityHref = (item: { year: number; slug: string }) => `/actividades/${item.year}/${item.slug}`;
 ---
 
-<BaseLayout title={`${activity.title} | Joaju`}>
-  <main class="min-h-screen py-24">
-    <section class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-      <a
-        href={`/actividades/${activity.year}`}
-        class="text-sm font-semibold text-joaju-muted transition hover:text-joaju-orange"
-      >
-        ← Volver a {activity.year}
+<BaseLayout title={`${activity.title} | Joaju`} description={activity.summary}>
+  <main class="relative min-h-screen overflow-clip py-14 md:py-20">
+    <div class="pointer-events-none absolute -right-40 -top-48 h-[520px] w-[520px] rounded-full bg-joaju-sand" aria-hidden="true"></div>
+    <section class="container-joaju relative">
+      <a href={`/actividades/${activity.year}`} class="link-arrow">
+        <span aria-hidden="true">←</span> Volver a {activity.year}
       </a>
 
-      {activity.heroImage && (
-        <div class="mt-8 overflow-hidden rounded-[2rem] border border-joaju-dark/10 bg-white shadow-soft">
-          <img src={activity.heroImage} alt={activity.title} fetchpriority="high" decoding="async" class="h-[360px] w-full object-cover md:h-[460px]" />
-        </div>
-      )}
-
-      <div class="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+      <div class="mt-8 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14">
         <div>
-          <span class="inline-flex rounded-full bg-joaju-orange/15 px-3.5 py-2 text-sm font-bold text-joaju-orange">
-            {activity.year} · {activity.dateLabel}
-          </span>
-          <h1 class="mt-5 text-[clamp(2.8rem,6vw,4.6rem)] font-black leading-[0.95] text-joaju-dark">
+          <span class="eyebrow">{activity.year} · {activity.dateLabel}</span>
+          <h1 class="mt-4 mb-0 text-[clamp(2.6rem,6vw,4.4rem)] font-extrabold leading-[0.98] tracking-[-0.02em] text-joaju-dark">
             {activity.title}
           </h1>
+          <p class="mt-6 mb-0 border-l-[5px] border-joaju-yellow pl-5 text-xl font-bold leading-8 text-joaju-dark">
+            {activity.summary}
+          </p>
 
-          <div class="mt-6 space-y-5 text-lg leading-8 text-joaju-muted">
+          {activity.heroImage && (
+            <img
+              src={activity.heroImage}
+              alt={activity.title}
+              fetchpriority="high"
+              decoding="async"
+              class="mt-9 h-[300px] w-full rounded-[2rem] object-cover shadow-soft md:h-[400px]"
+            />
+          )}
+
+          <div class="mt-8 space-y-5 text-lg leading-8 text-joaju-muted">
             {activity.description.map((paragraph: string) => (
-              <p>{paragraph}</p>
+              <p class="m-0">{paragraph}</p>
             ))}
           </div>
         </div>
 
-        <aside class="rounded-[1.8rem] border border-joaju-dark/10 bg-white/85 p-7 shadow-soft">
-          <h2 class="text-xl font-black text-joaju-dark">Ficha de la actividad</h2>
-          <div class="mt-5 space-y-4 text-joaju-muted">
-            <div>
-              <span class="block text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Fecha</span>
-              <span>{activity.dateLabel}</span>
-            </div>
-            <div>
-              <span class="block text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Lugar</span>
-              <span>{activity.location}</span>
-            </div>
-            <div>
-              <span class="block text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Resumen</span>
-              <span>{activity.summary}</span>
-            </div>
+        <aside class="h-fit overflow-hidden rounded-[2rem] bg-joaju-dark text-white shadow-soft lg:sticky lg:top-28">
+          <div class="p-7">
+            <h2 class="m-0 text-2xl font-extrabold text-joaju-yellow">Ficha de la actividad</h2>
+            <dl class="m-0 mt-6 grid gap-5">
+              <div>
+                <dt class="text-xs font-extrabold uppercase tracking-[0.16em] text-white/60">Fecha</dt>
+                <dd class="m-0 mt-1 text-lg font-bold">{activity.dateLabel} de {activity.year}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-extrabold uppercase tracking-[0.16em] text-white/60">Lugar</dt>
+                <dd class="m-0 mt-1 text-lg font-bold">{activity.location}</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="bg-joaju-yellow p-7 text-joaju-dark">
+            <p class="m-0 font-display text-xl font-extrabold leading-tight">¿Querés sumarte a la próxima?</p>
+            <a href="/donaciones" class="btn btn-dark mt-4 w-full">Quiero ayudar</a>
           </div>
         </aside>
       </div>
     </section>
 
     {gallery.length > 0 && (
-    <section class="mx-auto mt-20 w-[min(1120px,calc(100%-2rem))]">
-      <div class="max-w-3xl">
-        <span class="mb-4 inline-block rounded-full bg-white/80 px-3.5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-          Galería
-        </span>
-        <h2 class="m-0 text-[clamp(2.2rem,5vw,3.8rem)] font-black leading-[1] text-joaju-dark">
-          Fotos de la actividad
-        </h2>
-      </div>
+      <section class="container-joaju relative mt-20">
+        <span class="eyebrow">Galería</span>
+        <h2 class="heading-section">Fotos de la actividad</h2>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {gallery.map((image: string, index: number) => (
-          <div class="overflow-hidden rounded-[1.6rem] border border-joaju-dark/10 bg-white shadow-soft">
-            <img
-              src={image}
-              alt={`${activity.title} - foto ${index + 1}`}
-              loading="lazy"
-              decoding="async"
-              class="h-72 w-full object-cover transition duration-500 hover:scale-105"
-            />
-          </div>
-        ))}
-      </div>
-    </section>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+          {gallery.map((image: string, index: number) => (
+            <div class="overflow-hidden rounded-[1.75rem] bg-white p-2 shadow-card">
+              <img
+                src={image}
+                alt={`${activity.title} - foto ${index + 1}`}
+                loading="lazy"
+                decoding="async"
+                class="h-64 w-full rounded-[1.3rem] object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
     )}
+
+    <nav class="container-joaju relative mt-20 grid gap-4 border-t-2 border-dashed border-joaju-dark/15 pt-8 sm:grid-cols-2" aria-label="Otras actividades">
+      {previous ? (
+        <a href={activityHref(previous)} class="card group p-5 transition duration-200 hover:-translate-y-1 hover:shadow-soft">
+          <span class="text-sm font-extrabold uppercase tracking-[0.14em] text-joaju-ember">← Anterior</span>
+          <span class="mt-1 block font-display text-xl font-bold leading-tight text-joaju-dark">{previous.title}</span>
+          <span class="mt-1 block text-sm font-semibold text-joaju-muted">{previous.dateLabel} de {previous.year}</span>
+        </a>
+      ) : (
+        <span class="hidden sm:block"></span>
+      )}
+      {next && (
+        <a href={activityHref(next)} class="card group p-5 text-right transition duration-200 hover:-translate-y-1 hover:shadow-soft">
+          <span class="text-sm font-extrabold uppercase tracking-[0.14em] text-joaju-ember">Siguiente →</span>
+          <span class="mt-1 block font-display text-xl font-bold leading-tight text-joaju-dark">{next.title}</span>
+          <span class="mt-1 block text-sm font-semibold text-joaju-muted">{next.dateLabel} de {next.year}</span>
+        </a>
+      )}
+    </nav>
   </main>
 </BaseLayout>

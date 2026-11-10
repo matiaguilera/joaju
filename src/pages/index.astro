@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { activityYears } from "../data/activities";
+import Scribble from "../components/Scribble.astro";
+import { activities, activitiesByYear } from "../data/activities";
 
 const committee = [
   { name: "Ada Melgarejo", role: "Organizadora", image: "/miembros/ada.webp" },
@@ -10,10 +11,8 @@ const committee = [
   { name: "Daiana Ruiz", role: "Organizadora", image: "/miembros/daiana.webp" },
   { name: "Diego Maciel", role: "Organizador", image: "/miembros/diego-maciel.webp" },
   { name: "Diego Melgarejo", role: "Organizador", image: "/miembros/diego.webp" },
-  { name: "Elianne Añazco", role: "Organizadora", image: "/miembros/elianne.webp" },
   { name: "Fernando Baez", role: "Organizador", image: "/miembros/fernando.webp" },
   { name: "Gabriela González", role: "Organizadora", image: "/miembros/gabriela.webp" },
-  { name: "Gustavo Gamarra", role: "Organizador", image: "/miembros/gustavo.webp" },
   { name: "Leticia Fernandez", role: "Redes Sociales y Marketing", image: "/miembros/leticia.webp" },
   { name: "Marcelo Villalba", role: "Secretario", image: "/miembros/marcelo.webp" },
   { name: "Maria Inés Benitez", role: "Organizadora", image: "/miembros/ines.webp" },
@@ -21,16 +20,56 @@ const committee = [
   { name: "Sofia Torres", role: "Organizadora", image: "/miembros/sofia.webp" }
 ];
 
+const isOrganizer = (role: string) => role.startsWith("Organizador");
+
+const stats = [
+  { value: "2018", label: "primeras acciones de voluntariado" },
+  { value: "2021", label: "nace Joaju, con nombre e identidad propia" },
+  { value: String(activities.length), label: "actividades realizadas desde 2022" },
+  { value: String(committee.length), label: "voluntarios en el comité" }
+];
+
 const pillars = [
   {
     title: "Misión",
-    description: "Generar oportunidades, acompanar procesos y crear espacios donde la solidaridad se vuelva una herramienta concreta para dibujar el futuro.",
-    image: "https://images.pexels.com/photos/17044199/pexels-photo-17044199.jpeg?auto=compress&cs=tinysrgb&w=900"
+    description:
+      "Generar oportunidades, acompañar procesos y crear espacios donde la solidaridad se vuelva una herramienta concreta para dibujar el futuro.",
+    panel: "bg-joaju-yellow md:rounded-r-[1.25rem]",
+    icon: "pencil"
   },
   {
     title: "Visión",
-    description: "Ser una red de voluntariado referente en impacto comunitario, integrando compromiso humano, creatividad y trabajo colaborativo.",
-    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=900&q=75"
+    description:
+      "Ser una red de voluntariado referente en impacto comunitario, integrando compromiso humano, creatividad y trabajo colaborativo.",
+    panel: "bg-joaju-orange md:rounded-l-[1.25rem]",
+    icon: "sunrise"
+  }
+];
+
+const history = [
+  {
+    label: "2018",
+    text: "Hay historias que no se planifican, simplemente suceden. En 2018, una inquietud compartida dentro de Datapar dio origen a las primeras acciones de voluntariado. Sin un nombre todavía, pero con un propósito muy claro: impactar comunidades y abrazar vidas.",
+    image: "/historia/historia-1.webp",
+    alt: "Primeras acciones de voluntariado de Joaju",
+    width: 512,
+    height: 215
+  },
+  {
+    label: "Finales de 2021",
+    text: "A finales del 2021, esa inquietud se convirtió en identidad. Nació Joaju. Y con él, un espacio donde cada iniciativa, desde un desayuno hasta una charla de liderazgo, tenía el poder de transformar, tanto a quien lo recibía como a quien lo daba.",
+    image: "/historia/historia-2.webp",
+    alt: "Encuentro de voluntarios en los inicios de Joaju",
+    width: 512,
+    height: 384
+  },
+  {
+    label: "Hoy",
+    text: "Hoy, más de 1.000 personas llevan una parte de Joaju con ellas. Y nosotros seguimos adelante, construyendo una red de voluntariado referente, donde el compromiso humano, la creatividad y el trabajo colaborativo son la base de todo.",
+    image: "/historia/historia-3.webp",
+    alt: "Red de voluntariado Joaju en crecimiento",
+    width: 512,
+    height: 385
   }
 ];
 
@@ -39,13 +78,15 @@ const quotes = [
     quote: "No subestimes lo que puedes dar. A veces lo que para ti es simple, puede ser extraordinario",
     name: "Fabricio Caon",
     role: "Precursor Joaju",
-    image: "/frases/fabricio.webp"
+    image: "/frases/fabricio.webp",
+    accent: "text-joaju-yellow"
   },
   {
     quote: "Cada acción que nace del corazón, deja huellas",
     name: "Paz Da Re",
     role: "Precursora Joaju",
-    image: "/frases/paz.webp"
+    image: "/frases/paz.webp",
+    accent: "text-joaju-orange"
   }
 ];
 
@@ -53,135 +94,51 @@ const announcements = [
   {
     title: "Banco de Sangre",
     description: "Una iniciativa orientada a promover la donación voluntaria y el compromiso solidario con la comunidad.",
-    tone: "yellow",
-    image: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=700&q=75"
+    href: "/actividades/2026/banco-de-sangre",
+    icon: "drop",
+    tile: "bg-joaju-orange text-white"
   },
   {
     title: "Capacitación Primeros Auxilios",
     description: "Una actividad pensada para fortalecer conocimientos básicos y preparación ante situaciones de emergencia.",
-    tone: "orange",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=700&q=75"
+    href: "/actividades/2026/capacitacion-primeros-auxilios",
+    icon: "aid",
+    tile: "bg-joaju-dark text-joaju-yellow"
   },
   {
     title: "Campaña Manos que abrigan",
     description: "Una campaña solidaria enfocada en acompañar a quienes más lo necesitan con abrigo y apoyo cercano.",
-    tone: "green",
-    image: "https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=700&q=75"
+    href: "/actividades/2026/campana-manos-que-abrigan",
+    icon: "heart",
+    tile: "bg-joaju-yellow text-joaju-dark"
   }
 ];
 
-const navItems = [
-  { href: "#quienes-somos", label: "Quiénes Somos" },
-  { href: "#equipo", label: "Equipo" },
-  { href: "#mision-vision", label: "Misión/Visión" },
-  { href: "#actividades", label: "Actividades" },
-  { href: "#voluntariado", label: "Quiero ser parte", cta: true }
-];
-
-const toneMap = {
-  yellow: {
-    cardGlow: "after:bg-joaju-yellow/20",
-    icon: "from-joaju-yellow to-amber-400"
-  },
-  orange: {
-    cardGlow: "after:bg-joaju-orange/20",
-    icon: "from-joaju-orange to-rose-400"
-  },
-  green: {
-    cardGlow: "after:bg-joaju-green/20",
-    icon: "from-joaju-green to-emerald-300"
-  }
+const icons: Record<string, string[]> = {
+  pencil: ["M4 20l1-4.2L16.4 4.4a2.1 2.1 0 0 1 3 3L8 18.8 4 20Z", "M14.4 6.6l3 3"],
+  sunrise: ["M3 18h18", "M6.5 18a5.5 5.5 0 0 1 11 0", "M12 6v2.5", "M5 10.5l1.8 1.8", "M19 10.5l-1.8 1.8"],
+  drop: ["M12 3.2S18 9.3 18 13.6a6 6 0 0 1-12 0C6 9.3 12 3.2 12 3.2Z", "M9.4 14.2a2.7 2.7 0 0 0 2.2 2.4"],
+  aid: ["M5.5 7h13A2.5 2.5 0 0 1 21 9.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.500v-8A2.5 2.5 0 0 1 5.5 7Z", "M9 7V5.500A1.5 1.5 0 0 1 10.500 4h3A1.5 1.5 0 0 1 15 5.500V7", "M12 10.500v6", "M9 13.500h6"],
+  heart: ["M12 20.200S4.5 15.700 4.5 10.200A4.2 4.2 0 0 1 12 7.600a4.200 4.200 0 0 1 7.500 2.600C19.500 15.700 12 20.200 12 20.200Z"]
 };
-
-const remoteImage = (image, width, quality = 72) => {
-  const url = new URL(image);
-
-  url.searchParams.set("w", String(width));
-
-  if (url.hostname.includes("unsplash.com")) {
-    url.searchParams.set("auto", "format");
-    url.searchParams.set("fit", "crop");
-    url.searchParams.set("q", String(quality));
-  }
-
-  if (url.hostname.includes("pexels.com")) {
-    url.searchParams.set("auto", "compress");
-    url.searchParams.set("cs", "tinysrgb");
-  }
-
-  return url.toString();
-};
-
-const remoteSrcset = (image, widths, quality = 72) =>
-  widths.map((width) => `${remoteImage(image, width, quality)} ${width}w`).join(", ");
 ---
 
-<BaseLayout title="Joaju - Dibujando el Futuro">
-  <header class="sticky top-0 z-20 border-b border-joaju-dark/8 bg-[rgba(247,247,242,0.72)] backdrop-blur-xl">
-    <div class="mx-auto flex w-[min(1120px,calc(100%-2rem))] items-center justify-between gap-4 py-1.5 md:py-2">
-      <a href="#inicio" class="inline-flex items-center">
-        <img src="/logo.png" alt="Logo Joaju" width="232" height="92" fetchpriority="high" decoding="async" class="h-[40px] w-auto object-contain md:h-[46px]" />
-      </a>
-      <nav class="hidden flex-wrap items-center gap-7 text-[0.95rem] font-semibold text-joaju-muted md:flex lg:gap-9">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              "transition",
-              item.cta
-                ? "inline-flex min-w-[160px] items-center justify-center rounded-xl bg-joaju-orange px-5 py-2.5 text-[0.92rem] font-bold text-white shadow-sm hover:-translate-y-0.5 hover:bg-joaju-dark"
-                : "px-1 hover:text-joaju-orange"
-            ]}
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <details data-mobile-menu class="relative md:hidden">
-        <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-joaju-dark/10 bg-white/70 text-joaju-dark shadow-sm marker:content-none">
-          <span class="sr-only">Abrir menu</span>
-          <span class="flex flex-col gap-1.5">
-            <span class="block h-0.5 w-5 rounded-full bg-current"></span>
-            <span class="block h-0.5 w-5 rounded-full bg-current"></span>
-            <span class="block h-0.5 w-5 rounded-full bg-current"></span>
-          </span>
-        </summary>
-        <div class="absolute right-0 top-[calc(100%+0.75rem)] min-w-[220px] overflow-hidden rounded-2xl border border-joaju-dark/10 bg-white/95 p-2 text-joaju-muted shadow-soft backdrop-blur">
-          {navItems.map((item) => (
-            <a
-              href={item.href}
-              data-mobile-menu-link
-              class:list={[
-                "block rounded-xl px-4 py-3 font-semibold transition",
-                item.cta
-                  ? "bg-joaju-orange text-center font-extrabold text-white hover:bg-joaju-dark"
-                  : "hover:bg-joaju-dark/5 hover:text-joaju-orange"
-              ]}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </details>
-    </div>
-  </header>
-
+<BaseLayout title="Joaju - Dibujando el Futuro" home>
   <div
     id="donation-success"
-    class="fixed left-1/2 top-24 z-50 hidden w-[min(92vw,520px)] -translate-x-1/2 rounded-2xl border border-joaju-green/30 bg-white px-5 py-4 text-joaju-dark shadow-soft"
+    class="fixed left-1/2 top-24 z-50 hidden w-[min(92vw,520px)] -translate-x-1/2 rounded-3xl border-2 border-joaju-yellow bg-white px-5 py-4 text-joaju-dark shadow-soft"
     role="status"
     aria-live="polite"
   >
     <div class="flex items-start justify-between gap-4">
       <div>
-        <p class="m-0 font-extrabold text-joaju-green">Mensaje enviado correctamente</p>
+        <p class="m-0 font-extrabold text-joaju-dark">Mensaje enviado correctamente</p>
         <p class="m-0 mt-1 text-sm leading-6 text-joaju-muted">Gracias por contactar con Joaju. Recibimos tu solicitud y te responderemos pronto.</p>
       </div>
       <button
         type="button"
         data-close-donation-success
-        class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-joaju-dark/10 text-xl leading-none text-joaju-muted transition hover:bg-joaju-dark/5 hover:text-joaju-dark"
+        class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-joaju-dark/15 text-xl leading-none text-joaju-muted transition hover:bg-joaju-dark/5 hover:text-joaju-dark"
         aria-label="Cerrar mensaje"
       >
         ×
@@ -190,424 +147,335 @@ const remoteSrcset = (image, widths, quality = 72) =>
   </div>
 
   <main>
-    <section id="inicio" class="relative flex min-h-[calc(100svh-57px)] items-center overflow-clip py-16 md:min-h-[calc(100svh-62px)]">
-      <div class="bg-hero-overlay absolute inset-0"></div>
-      <div class="absolute inset-0 bg-[linear-gradient(110deg,rgba(10,58,42,0.92)_0%,rgba(10,58,42,0.78)_42%,rgba(10,58,42,0.38)_100%)]"></div>
-      <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-joaju-dark/48 to-transparent"></div>
-      <div class="pointer-events-none absolute left-0 top-0 h-full w-full opacity-20 [background-image:linear-gradient(120deg,transparent_0_44%,rgba(255,195,0,0.45)_44%_45%,transparent_45%_100%),linear-gradient(120deg,transparent_0_58%,rgba(255,87,51,0.5)_58%_59%,transparent_59%_100%)]"></div>
+    <!-- Portada -->
+    <section id="inicio" class="relative overflow-clip">
+      <div class="pointer-events-none absolute -right-40 -top-48 h-[420px] w-[420px] rounded-full bg-joaju-sand md:h-[640px] md:w-[640px]" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-20 -left-28 h-56 w-56 rounded-full border-[28px] border-joaju-yellow/25" aria-hidden="true"></div>
 
-      <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
-        <div class="text-white" data-animate="up">
-          <span class="inline-flex rounded-full border border-white/18 bg-white/10 px-4 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow backdrop-blur">
+      <div class="container-joaju relative grid items-center gap-12 py-14 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
+        <div data-animate="up">
+          <span class="inline-flex items-center gap-2 rounded-full bg-joaju-dark px-4 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">
+            <span class="h-2 w-2 rounded-full bg-joaju-orange" aria-hidden="true"></span>
             Voluntariado Datapar
           </span>
-          <h1 class="font-joaju-logo text-hero-logo mt-7 mb-0 text-[clamp(4.8rem,12vw,9.2rem)] leading-[0.82] font-extrabold tracking-[0.01em]">Joaju</h1>
-          <p class="font-joaju-tagline mt-4 max-w-[34rem] text-[clamp(1.35rem,2.8vw,2.2rem)] font-bold leading-tight tracking-[0.03em] text-white/90">
-            “Dibujando el futuro”
-          </p>
-          <p class="mt-6 max-w-[38rem] text-lg leading-8 text-white/76">
+          <h1 class="mt-6 mb-0 text-[clamp(3.2rem,9vw,6.4rem)] font-extrabold leading-[0.92] tracking-[-0.02em] text-joaju-dark">
+            <span class="sr-only">Joaju: </span>Dibujando el
+            <span class="relative inline-block whitespace-nowrap">
+              futuro
+              <Scribble class="absolute -bottom-[0.06em] left-0 h-[0.2em] w-full text-joaju-orange" width={7} />
+            </span>
+          </h1>
+          <p class="mt-8 max-w-[34rem] text-xl leading-8 text-joaju-muted">
             Una comunidad que transforma el compromiso humano en acciones concretas para abrazar vidas y abrir oportunidades.
           </p>
-          <div class="mt-10 flex flex-wrap gap-4">
-            <a class="inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5 hover:bg-white" href="#voluntariado">
-              Sumar mi ayuda
-            </a>
-            <a class="inline-flex min-w-[180px] items-center justify-center rounded-2xl border border-white/24 bg-white/10 px-6 py-4 font-extrabold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/18" href="#quienes-somos">
-              Conocer Joaju
-            </a>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a class="btn btn-yellow min-w-[200px]" href="#voluntariado">Sumar mi ayuda</a>
+            <a class="btn btn-outline min-w-[180px]" href="#quienes-somos">Conocer Joaju</a>
           </div>
         </div>
 
-        <div class="relative hidden min-h-[520px] md:block" data-animate="scale">
-          <img src="/historia/historia-4.webp" alt="Voluntariado Joaju" width="512" height="385" loading="lazy" decoding="async" class="absolute right-0 top-4 h-[360px] w-[72%] rounded-[2rem] border border-white/18 object-cover shadow-[0_28px_70px_rgba(0,0,0,0.22)]" />
-          <img src="/historia/historia-2.webp" alt="Encuentro de voluntarios Joaju" width="512" height="384" loading="lazy" decoding="async" class="absolute left-0 bottom-14 h-[245px] w-[54%] rounded-[1.6rem] border border-white/18 object-cover shadow-[0_22px_55px_rgba(0,0,0,0.2)]" />
-          <div class="absolute bottom-0 right-8 w-[min(260px,70%)] rounded-[1.4rem] border border-white/18 bg-white/12 p-5 text-white shadow-[0_18px_45px_rgba(0,0,0,0.16)] backdrop-blur-xl">
-            <span class="text-4xl font-black text-joaju-yellow">+1.000</span>
-            <p class="mt-2 font-bold leading-6 text-white/82">personas llevan una parte de Joaju con ellas</p>
+        <!-- Dos figuras que se abrazan, como en el logo: un círculo y un cuerpo en "U" -->
+        <div class="relative mx-auto aspect-[10/11] w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[500px]" data-animate="scale">
+          <span class="absolute left-[20%] top-0 aspect-square w-[14%] rounded-full bg-joaju-yellow" aria-hidden="true"></span>
+          <div class="hug-frame absolute left-0 top-[17%] w-[54%] bg-joaju-yellow p-[2.2%] shadow-soft">
+            <img src="/historia/historia-3.webp" alt="Voluntarios de Joaju con sus certificados" width="512" height="385" fetchpriority="high" decoding="async" class="hug-frame aspect-[4/5] w-full object-cover" />
           </div>
-          <div class="absolute right-12 top-0 h-20 w-20 rounded-full border-[14px] border-joaju-orange/80"></div>
-          <div class="absolute left-16 top-16 h-14 w-14 rotate-12 rounded-xl bg-joaju-yellow/85"></div>
+
+          <span class="absolute right-[20%] top-[12%] aspect-square w-[14%] rounded-full bg-joaju-orange" aria-hidden="true"></span>
+          <div class="hug-frame absolute right-0 top-[29%] z-10 w-[54%] bg-joaju-orange p-[2.2%] shadow-soft">
+            <img src="/historia/historia-4.webp" alt="Voluntarios de Joaju junto a niñas y niños en una actividad" width="512" height="385" fetchpriority="high" decoding="async" class="hug-frame aspect-[4/5] w-full object-cover" />
+          </div>
+
+          <div class="float-slow absolute -left-2 bottom-[2%] z-20 w-[52%] max-w-[230px] -rotate-3 rounded-3xl bg-joaju-dark p-4 text-white shadow-soft sm:p-5">
+            <span class="font-display text-3xl font-extrabold leading-none text-joaju-yellow sm:text-4xl">+1.000</span>
+            <p class="m-0 mt-1 text-sm font-bold leading-5 text-white/85">personas llevan una parte de Joaju con ellas</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="quienes-somos" class="bg-white/55 py-24">
-      <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-10 md:grid-cols-[1.05fr_0.95fr]">
+    <!-- Cifras -->
+    <section class="bg-joaju-dark text-white" aria-label="Joaju en cifras">
+      <dl class="container-joaju my-0 grid grid-cols-2 gap-x-6 gap-y-8 py-10 md:grid-cols-4 md:py-12">
+        {stats.map((stat, index) => (
+          <div class="flex flex-col-reverse" data-animate="up" style={`transition-delay:${index * 90}ms`}>
+            <dt class="mt-1 max-w-[13rem] text-[0.95rem] font-semibold leading-6 text-white/75">{stat.label}</dt>
+            <dd class:list={["m-0 font-display text-[clamp(2.4rem,5vw,3.4rem)] font-extrabold leading-none", index % 2 === 0 ? "text-joaju-yellow" : "text-joaju-orange"]}>
+              {stat.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <!-- Quiénes somos -->
+    <section id="quienes-somos" class="py-20 md:py-28">
+      <div class="container-joaju grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div class="relative mx-auto w-full max-w-[520px]" data-animate="scale">
+          <div class="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-[2rem] bg-joaju-yellow" aria-hidden="true"></div>
+          <img src="/historia/historia-2.webp" alt="Ronda de voluntarios de Joaju compartiendo con la comunidad" width="512" height="384" loading="lazy" decoding="async" class="relative aspect-[4/3] w-full rounded-[2rem] object-cover shadow-soft" />
+          <span class="absolute -right-3 -top-5 h-14 w-14 rounded-full bg-joaju-orange" aria-hidden="true"></span>
+        </div>
+
         <div data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-            ¿Quiénes Somos?
-          </span>
-          <h2 class="m-0 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-black text-joaju-dark">
-            Una comunidad unida por el calor humano y la esperanza
+          <span class="eyebrow">¿Quiénes somos?</span>
+          <h2 class="heading-section">
+            Una comunidad unida por el
+            <span class="relative inline-block whitespace-nowrap">
+              calor humano
+              <Scribble class="absolute -bottom-[0.08em] left-0 h-[0.22em] w-full text-joaju-yellow" width={6} />
+            </span>
+            y la esperanza
           </h2>
-          <div class="mt-6 space-y-5 text-lg leading-8 text-joaju-muted">
-            <p>
-              Somos Joaju, un programa de voluntariado compuesto por los colaboradores de Datapar.
-              Nacimos con la misión de realizar acciones solidarias, buscando aportar en la construcción
-              de mejores oportunidades para niños, adolescentes, jóvenes y adultos en situación vulnerable.
-            </p>
-            <p class="font-semibold text-joaju-dark">
-              ¡Una comunidad unida por el calor humano y la esperanza!
-            </p>
-          </div>
-        </div>
-
-        <div class="relative min-h-[360px]" data-animate="scale">
-          <div class="glow-yellow absolute left-[6%] top-[10%] h-[140px] w-[140px] rounded-full blur-[70px]"></div>
-          <div class="glow-orange absolute bottom-[8%] right-[4%] h-[180px] w-[180px] rounded-full blur-[70px]"></div>
-          <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-white/90 via-white/18 to-joaju-dark/10 p-px shadow-[inset_0_1px_0_rgba(255,255,255,0.88),0_-10px_28px_rgba(255,255,255,0.48),0_22px_38px_rgba(10,58,42,0.18)]">
-            <img
-              src={remoteImage("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=75", 900, 72)}
-              srcset={remoteSrcset("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=75", [420, 700, 900], 72)}
-              sizes="(max-width: 767px) calc(100vw - 4rem), 520px"
-              alt="Comunidad Joaju"
-              width="900"
-              height="420"
-              loading="lazy"
-              decoding="async"
-              class="h-[420px] w-full rounded-[1.95rem] object-cover shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="identidad-visual" class="relative overflow-clip py-24">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,195,0,0.12),transparent_20%),radial-gradient(circle_at_top_right,rgba(255,87,51,0.12),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.75),rgba(255,255,255,0.62))]"></div>
-      <div class="bg-identity-texture pointer-events-none absolute inset-0 opacity-35 bg-cover bg-center grayscale"></div>
-
-      <div class="relative z-10 mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto max-w-5xl text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-            Identidad Visual
-          </span>
-          <h2 class="m-0 text-[clamp(3rem,7vw,5.4rem)] leading-[0.95] font-black text-joaju-dark">
-            <span class="text-joaju-yellow">I</span>dentidad <span class="text-joaju-yellow">V</span>isual
-          </h2>
-          <p class="mx-auto mt-8 max-w-4xl text-xl font-semibold leading-9 text-joaju-dark">
-            El concepto del logo e identidad visual es simbolizar el voluntariado como puente entre la ayuda y la necesidad.
+          <p class="mt-7 text-lg leading-8 text-joaju-muted">
+            Somos Joaju, un programa de voluntariado compuesto por los colaboradores de Datapar.
+            Nacimos con la misión de realizar acciones solidarias, buscando aportar en la construcción
+            de mejores oportunidades para niños, adolescentes, jóvenes y adultos en situación vulnerable.
           </p>
         </div>
-
-        <div class="mx-auto mt-10 max-w-4xl text-center" data-animate="up">
-          <p class="text-lg leading-8 text-joaju-muted">
-            <strong class="text-joaju-dark">La identidad de Joaju tiene varios significados.</strong>
-            El logotipo tiene la forma de dos personas abrazándose, que le da un significado humano, cálido y de unidad,
-            y la forma de una sonrisa, un gesto de alegría y felicidad.
-          </p>
-        </div>
-
-        <div class="mx-auto mt-0 max-w-xl overflow-hidden" data-animate="scale">
-          <img
-            src="/imagen-identidad-visual.webp"
-            alt="Composición de identidad visual de Joaju"
-            width="1152"
-            height="440"
-            loading="lazy"
-            decoding="async"
-            class="h-auto w-full object-contain object-center md:h-[220px] md:object-cover"
-          />
-        </div>
-
-        <div class="mx-auto mt-0 max-w-4xl text-center" data-animate="up">
-          <p class="text-xl font-semibold leading-9 text-joaju-dark">
-            Utilizamos colores cálidos y contrastados que refuerzan la idea de unión y alegría que quiere transmitir el proyecto.
-          </p>
-        </div>
-
-        <div class="pointer-events-none absolute left-6 top-8 hidden h-14 w-14 rounded-full border-2 border-joaju-orange/50 lg:block"></div>
-        <div class="pointer-events-none absolute left-24 bottom-10 hidden h-10 w-10 rounded-full border-2 border-emerald-400/60 lg:block"></div>
-        <div class="pointer-events-none absolute right-10 top-8 hidden h-14 w-14 rounded-full border-2 border-amber-400/60 lg:block"></div>
-        <div class="pointer-events-none absolute right-28 top-18 hidden h-12 w-12 rounded-full border-2 border-orange-300/70 lg:block"></div>
-        <div class="pointer-events-none absolute right-40 top-10 hidden h-12 w-12 rounded-full border-2 border-emerald-300/70 lg:block"></div>
       </div>
     </section>
 
-    <section class="py-24">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Anuncios</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Anuncios y próximos eventos</h2>
+    <!-- Misión y visión -->
+    <section id="mision-vision" class="bg-joaju-paper py-20 md:py-28">
+      <div class="container-joaju">
+        <div class="max-w-2xl" data-animate="up">
+          <span class="eyebrow">Nuestra esencia</span>
+          <h2 class="heading-section">Misión y visión</h2>
         </div>
-        <div class="grid gap-6 md:grid-cols-3">
-          {announcements.map((item, index) => (
-            <article
-              class={`relative overflow-hidden rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 shadow-soft after:absolute after:-right-[20%] after:-bottom-[30%] after:h-[180px] after:w-[180px] after:rounded-full ${toneMap[item.tone].cardGlow}`}
-              data-animate="up"
-              style={`transition-delay:${index * 140}ms`}
-            >
-              <div class="mb-5 overflow-hidden rounded-[1.25rem]">
-              <img
-                src={remoteImage(item.image, 700, 72)}
-                srcset={remoteSrcset(item.image, [360, 520, 700], 72)}
-                sizes="(max-width: 767px) calc(100vw - 5rem), 33vw"
-                alt={item.title}
-                width="700"
-                height="416"
-                loading="lazy"
-                decoding="async"
-                class="h-52 w-full object-cover"
-              />
-              </div>
-              <h3 class="m-0 text-[1.45rem] font-bold">{item.title}</h3>
-              <p class="mt-3 leading-7 text-joaju-muted">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="equipo" class="bg-white/55 py-24">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Equipo</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Nuestros miembros</h2>
-        </div>
-        <div class="flex flex-wrap justify-center gap-6">
-          {committee.map((person, index) => (
-            <article class="w-full rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 p-6 text-center shadow-soft sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]" data-animate="up" style={`transition-delay:${index * 90}ms`}>
-              <div class="mx-auto mb-4 h-[134px] w-[134px] rounded-full bg-gradient-to-b from-white/90 via-white/18 to-joaju-dark/12 p-px shadow-[inset_0_1px_0_rgba(255,255,255,0.88),0_-7px_18px_rgba(255,255,255,0.5),0_14px_24px_rgba(10,58,42,0.18)]">
-                <img src={person.image} alt={person.name} width="264" height="264" loading="lazy" decoding="async" class="h-full w-full rounded-full object-cover" />
-              </div>
-              <h3 class="m-0 text-[1.45rem] font-bold">{person.name}</h3>
-              <p class="mt-2 font-bold text-joaju-orange">{person.role}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="mision-vision" class="py-24">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Esencia</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Misión y visión</h2>
-        </div>
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="mt-12 grid gap-4 md:grid-cols-2">
           {pillars.map((pillar, index) => (
-            <article class="relative min-h-[540px] overflow-hidden rounded-[2rem] shadow-soft max-sm:min-h-[420px]" data-animate="scale" style={`transition-delay:${index * 150}ms`}>
-              <img
-                src={remoteImage(pillar.image, 900, 72)}
-                srcset={remoteSrcset(pillar.image, [420, 700, 900], 72)}
-                sizes="(max-width: 767px) calc(100vw - 2rem), 548px"
-                alt={pillar.title}
-                width="900"
-                height="540"
-                loading="lazy"
-                decoding="async"
-                class="h-full w-full object-cover"
-              />
-              <div class="absolute inset-0 bg-gradient-to-b from-joaju-dark/10 to-joaju-dark/88"></div>
-              <div class="absolute inset-x-0 bottom-0 p-8 text-white">
-                <h3 class="m-0 text-[1.45rem] font-bold">{pillar.title}</h3>
-                <p class="mt-4 max-w-[32rem] leading-7 text-white/86">{pillar.description}</p>
-              </div>
+            <article class:list={["relative overflow-hidden rounded-[2.5rem] p-8 text-joaju-dark md:p-11", pillar.panel]} data-animate="up" style={`transition-delay:${index * 140}ms`}>
+              <span class="pointer-events-none absolute -right-14 -top-14 h-48 w-48 rounded-full border-[22px] border-white/25" aria-hidden="true"></span>
+              <span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-joaju-dark text-white">
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  {icons[pillar.icon].map((d) => <path d={d} />)}
+                </svg>
+              </span>
+              <h3 class="mt-7 mb-0 text-[clamp(2.2rem,4vw,3rem)] font-extrabold leading-none">{pillar.title}</h3>
+              <p class="mt-4 mb-0 max-w-[30rem] text-lg font-semibold leading-8">{pillar.description}</p>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="bg-white/55 pb-16 pt-4">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
-          {quotes.map((item, index) => (
-            <article class="relative overflow-hidden rounded-2xl border border-joaju-dark/8 bg-white/82 p-6 shadow-[0_18px_45px_rgba(10,58,42,0.08)]" data-animate="up" style={`transition-delay:${index * 120}ms`}>
-              <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-joaju-orange/25 via-joaju-orange to-joaju-orange/25"></div>
-              <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
-                <div class="h-[98px] w-[98px] shrink-0 rounded-xl bg-gradient-to-b from-white/88 via-white/16 to-joaju-dark/12 p-px shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_-6px_16px_rgba(255,255,255,0.45),0_12px_22px_rgba(10,58,42,0.17)]">
-                  <img src={item.image} alt={item.name} width="440" height="440" loading="lazy" decoding="async" class="h-full w-full rounded-[0.7rem] object-cover" />
-                </div>
-                <div>
-                  <blockquote class="m-0 text-[1.02rem] font-normal italic leading-7 text-joaju-dark/82">
-                  “{item.quote}”
-                  </blockquote>
-                  <div class="mt-5 h-px w-16 bg-joaju-orange/25"></div>
-                  <p class="mt-4 text-[0.95rem] font-extrabold text-joaju-dark">{item.name}</p>
-                  <p class="mt-1 text-sm font-bold text-joaju-orange/85">{item.role}</p>
-                </div>
-              </div>
-            </article>
-          ))}
+    <!-- Nuestra historia -->
+    <section id="historia" class="py-20 md:py-28">
+      <div class="container-joaju">
+        <div class="mx-auto max-w-3xl text-center" data-animate="up">
+          <span class="eyebrow">Nuestra historia</span>
+          <h2 class="heading-section">Un recorrido construido con solidaridad y compromiso</h2>
         </div>
-      </div>
-    </section>
 
-    <section class="bg-white/55 py-24">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto max-w-4xl text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-            Nuestra Historia
+        <div class="relative mt-16">
+          <div class="absolute bottom-3 left-[11px] top-3 border-l-[3px] border-dashed border-joaju-dark/20 lg:left-1/2 lg:-translate-x-1/2" aria-hidden="true"></div>
+          <ol class="m-0 grid list-none gap-14 p-0 lg:gap-20">
+            {history.map((item, index) => (
+              <li class="relative grid items-center gap-6 pl-11 lg:grid-cols-2 lg:gap-24 lg:pl-0" data-animate="up">
+                <span
+                  class:list={[
+                    "absolute left-0 top-2 h-[25px] w-[25px] rounded-full border-[5px] border-joaju-cream lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2",
+                    index % 2 === 0 ? "bg-joaju-yellow" : "bg-joaju-orange"
+                  ]}
+                  aria-hidden="true"
+                ></span>
+                <div class:list={[index % 2 === 0 ? "lg:text-right" : "lg:order-2"]}>
+                  <h3 class="m-0 text-[clamp(2.4rem,5vw,3.6rem)] font-extrabold leading-none text-joaju-ember">{item.label}</h3>
+                  <p class="mt-4 mb-0 text-lg leading-8 text-joaju-muted">{item.text}</p>
+                </div>
+                <div class:list={["rounded-[1.75rem] bg-white p-2.5 shadow-soft", index % 2 === 0 ? "rotate-1" : "-rotate-1"]}>
+                  <img src={item.image} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" class="h-auto w-full rounded-[1.25rem] object-cover" />
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <p class="mx-auto mt-20 mb-0 max-w-3xl text-center font-display text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-joaju-dark" data-animate="up">
+          Este es solo el comienzo de una historia que se escribe
+          <span class="relative inline-block whitespace-nowrap">
+            entre todos.
+            <Scribble class="absolute -bottom-[0.1em] left-0 h-[0.24em] w-full text-joaju-orange" width={6} />
           </span>
-          <h2 class="m-0 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] font-black text-joaju-dark">
-            Un recorrido construido con solidaridad y compromiso
-          </h2>
-        </div>
-
-        <div class="mt-12 grid gap-6 lg:grid-cols-2">
-          <article class="overflow-hidden rounded-[1.8rem] border border-joaju-dark/10 bg-white/86 shadow-soft lg:col-span-2 lg:grid lg:grid-cols-[1.05fr_0.95fr]" data-animate="up">
-            <div class="p-7 md:p-9">
-              <span class="text-sm font-extrabold uppercase tracking-[0.16em] text-joaju-orange">2018</span>
-              <p class="mt-4 text-lg leading-8 text-joaju-muted">
-                Hay historias que no se planifican, simplemente suceden. En 2018, una inquietud compartida dentro de Datapar dio origen a las primeras acciones de voluntariado. Sin un nombre todavía, pero con un propósito muy claro: impactar comunidades y abrazar vidas.
-              </p>
-            </div>
-            <img src="/historia/historia-1.webp" alt="Primeras acciones de voluntariado de Joaju" width="512" height="215" loading="lazy" decoding="async" class="h-auto w-full object-contain lg:h-full lg:min-h-[260px] lg:object-cover" />
-          </article>
-
-          <article class="overflow-hidden rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 shadow-[0_18px_45px_rgba(10,58,42,0.08)]" data-animate="up" style="transition-delay:120ms">
-            <img src="/historia/historia-2.webp" alt="Nacimiento de la identidad Joaju" width="512" height="384" loading="lazy" decoding="async" class="h-56 w-full object-cover" />
-            <div class="p-7">
-              <span class="text-sm font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Finales de 2021</span>
-              <p class="mt-4 text-lg leading-8 text-joaju-muted">
-                A finales del 2021, esa inquietud se convirtió en identidad. Nació Joaju. Y con él, un espacio donde cada iniciativa, desde un desayuno hasta una charla de liderazgo, tenía el poder de transformar, tanto a quien lo recibía como a quien lo daba.
-              </p>
-            </div>
-          </article>
-
-          <article class="overflow-hidden rounded-[1.6rem] border border-joaju-dark/10 bg-white/84 shadow-[0_18px_45px_rgba(10,58,42,0.08)]" data-animate="up" style="transition-delay:180ms">
-            <img src="/historia/historia-3.webp" alt="Red de voluntariado Joaju en crecimiento" width="512" height="385" loading="lazy" decoding="async" class="h-56 w-full object-cover" />
-            <div class="p-7">
-              <span class="text-sm font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Hoy</span>
-              <p class="mt-4 text-lg leading-8 text-joaju-muted">
-                Hoy, más de 1.000 personas llevan una parte de Joaju con ellas. Y nosotros seguimos adelante, construyendo una red de voluntariado referente, donde el compromiso humano, la creatividad y el trabajo colaborativo son la base de todo.
-              </p>
-            </div>
-          </article>
-
-          <article class="relative overflow-hidden rounded-[1.8rem] border border-joaju-dark/10 bg-joaju-dark text-white shadow-soft lg:col-span-2" data-animate="up" style="transition-delay:240ms">
-            <img src="/historia/historia-4.webp" alt="Historia de Joaju escrita entre todos" width="512" height="385" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover opacity-45" />
-            <div class="absolute inset-0 bg-gradient-to-r from-joaju-dark/92 via-joaju-dark/78 to-joaju-dark/46"></div>
-            <div class="relative max-w-3xl p-8 md:p-10">
-              <span class="text-sm font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">Entre todos</span>
-              <p class="mt-4 text-2xl font-black leading-10">
-                Este es solo el comienzo de una historia que se escribe entre todos.
-              </p>
-            </div>
-          </article>
-        </div>
+        </p>
       </div>
     </section>
 
-    <section id="actividades" class="bg-white/55 py-24">
-      <div class="mx-auto w-[min(1120px,calc(100%-2rem))]">
-        <div class="mx-auto mb-12 max-w-[42rem] text-center" data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">Actividades</span>
-          <h2 class="m-0 text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] font-black">Actividades</h2>
-          <p class="mt-4 leading-7 text-joaju-muted">
-            Elige un año para explorar las actividades realizadas y entrar luego al detalle completo de cada una.
-          </p>
+    <!-- Frases -->
+    <section class="bg-joaju-dark py-20 text-white md:py-24" aria-label="Frases de los precursores de Joaju">
+      <div class="container-joaju grid gap-6 md:grid-cols-2">
+        {quotes.map((item, index) => (
+          <figure class="m-0 flex flex-col rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10" data-animate="up" style={`transition-delay:${index * 120}ms`}>
+            <span class:list={["font-display text-[6rem] font-extrabold leading-[0.6]", item.accent]} aria-hidden="true">“</span>
+            <blockquote class="m-0 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-bold leading-snug text-white">
+              {item.quote}
+            </blockquote>
+            <figcaption class="mt-auto flex items-center gap-4 pt-8">
+              <img src={item.image} alt="" width="440" height="440" loading="lazy" decoding="async" class="h-16 w-16 rounded-full border-[3px] border-white/20 object-cover" />
+              <span>
+                <span class="block text-lg font-extrabold text-white">{item.name}</span>
+                <span class:list={["block text-sm font-bold", item.accent]}>{item.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <!-- Actividades -->
+    <section id="actividades" class="py-20 md:py-28">
+      <div class="container-joaju">
+        <div class="flex flex-wrap items-end justify-between gap-6" data-animate="up">
+          <div class="max-w-2xl">
+            <span class="eyebrow">Actividades</span>
+            <h2 class="heading-section">Nuestro recorrido, año por año</h2>
+            <p class="mt-4 mb-0 text-lg leading-8 text-joaju-muted">
+              Elige un año para explorar las actividades realizadas y entrar luego al detalle completo de cada una.
+            </p>
+          </div>
+          <a href="/actividades" class="link-arrow">Ver todas las actividades <span aria-hidden="true">→</span></a>
         </div>
-        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
-          {activityYears.map((year, index) => (
+
+        <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-5">
+          {activitiesByYear.map(({ year, items }, index) => (
             <a
               href={`/actividades/${year}`}
-              class="group relative overflow-hidden rounded-[1.8rem] border border-joaju-dark/10 bg-white/85 p-7 text-center shadow-soft transition hover:-translate-y-1"
+              class="card group relative flex flex-col overflow-hidden p-5 transition duration-200 last:col-span-2 hover:-translate-y-1.5 hover:shadow-soft md:p-6 md:last:col-span-1"
               data-animate="up"
-              style={`transition-delay:${index * 90}ms`}
+              style={`transition-delay:${index * 80}ms`}
             >
-              <div class="absolute inset-x-6 bottom-5 h-px origin-left scale-x-0 bg-gradient-to-r from-joaju-yellow via-joaju-orange to-joaju-green transition duration-300 group-hover:scale-x-100"></div>
-              <span class="text-6xl font-black text-joaju-dark/70 transition duration-300 group-hover:text-joaju-dark">{year}</span>
-              <p class="mt-5 inline-flex translate-y-2 items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-joaju-orange opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                Ver actividades
-                <span class="text-base transition duration-300 group-hover:translate-x-1">→</span>
-              </p>
+              <span class:list={["absolute inset-x-0 top-0 h-2", index % 2 === 0 ? "bg-joaju-yellow" : "bg-joaju-orange"]} aria-hidden="true"></span>
+              <span class="mt-2 font-display text-[clamp(2.6rem,5vw,3.4rem)] font-extrabold leading-none text-joaju-dark">{year}</span>
+              <span class="mt-2 font-bold text-joaju-muted">
+                {items.length} {items.length === 1 ? "actividad" : "actividades"}
+              </span>
+              <span class="mt-6 inline-flex h-10 w-10 items-center justify-center rounded-full bg-joaju-dark text-lg text-white transition duration-200 group-hover:translate-x-1 group-hover:bg-joaju-orange" aria-hidden="true">→</span>
             </a>
           ))}
-        </div>
-        <div class="mt-10 text-center">
-          <a href="/actividades" class="font-semibold text-joaju-orange transition hover:text-joaju-dark">
-            Ver todas las actividades por año →
-          </a>
         </div>
       </div>
     </section>
 
-    <section id="voluntariado" class="relative overflow-clip py-24 text-white">
-      <div class="bg-hero-overlay absolute inset-0"></div>
-      <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] items-center gap-12 md:grid-cols-2">
-        <img src="/joaju_light.webp" alt="Logo Joaju claro" width="520" height="176" loading="lazy" decoding="async" class="mx-auto w-[min(260px,70%)]" data-animate="scale" />
+    <!-- Anuncios -->
+    <section id="anuncios" class="bg-joaju-paper py-20 md:py-28">
+      <div class="container-joaju">
+        <div class="max-w-2xl" data-animate="up">
+          <span class="eyebrow">Lo que viene</span>
+          <h2 class="heading-section">Anuncios y próximos eventos</h2>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+          {announcements.map((item, index) => (
+            <a href={item.href} class="group flex flex-col rounded-[2rem] border border-joaju-dark/8 bg-joaju-cream p-7 transition duration-200 hover:-translate-y-1.5 hover:shadow-soft" data-animate="up" style={`transition-delay:${index * 120}ms`}>
+              <span class:list={["inline-flex h-[72px] w-[72px] items-center justify-center rounded-[1.4rem] transition duration-200 group-hover:-rotate-6", item.tile]}>
+                <svg class="h-9 w-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  {icons[item.icon].map((d) => <path d={d} />)}
+                </svg>
+              </span>
+              <h3 class="mt-6 mb-0 text-[1.6rem] font-extrabold leading-tight text-joaju-dark">{item.title}</h3>
+              <p class="mt-3 mb-6 leading-7 text-joaju-muted">{item.description}</p>
+              <span class="link-arrow mt-auto">Ver detalle <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section id="equipo" class="py-20 md:py-28">
+      <div class="container-joaju">
+        <div class="mx-auto max-w-2xl text-center" data-animate="up">
+          <span class="eyebrow">Equipo</span>
+          <h2 class="heading-section">Nuestros miembros</h2>
+        </div>
+        <ul class="m-0 mt-14 flex list-none flex-wrap justify-center gap-y-11 p-0">
+          {committee.map((person, index) => (
+            <li class="group w-1/2 px-2.5 text-center sm:w-1/3 lg:w-1/4" data-animate="up" style={`transition-delay:${(index % 4) * 80}ms`}>
+              <div class:list={["mx-auto h-[124px] w-[124px] rounded-full p-[5px] transition duration-300 group-hover:-translate-y-1 group-hover:rotate-3 md:h-[148px] md:w-[148px]", index % 2 === 0 ? "bg-joaju-yellow" : "bg-joaju-orange"]}>
+                <img src={person.image} alt="" width="264" height="264" loading="lazy" decoding="async" class="h-full w-full rounded-full border-4 border-joaju-cream object-cover" />
+              </div>
+              <h3 class="mt-4 mb-0 text-[1.3rem] font-bold leading-tight text-joaju-dark">{person.name}</h3>
+              <p class:list={["mx-auto mt-2 mb-0 w-fit text-sm font-bold", isOrganizer(person.role) ? "text-joaju-muted" : "rounded-full bg-joaju-dark px-3 py-1 text-joaju-yellow"]}>
+                {person.role}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Identidad visual -->
+    <section id="identidad-visual" class="bg-joaju-paper py-20 md:py-28">
+      <div class="container-joaju grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
         <div data-animate="up">
-          <span class="mb-4 inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-yellow">
-            Sumate a Joaju
-          </span>
-          <h2 class="m-0 text-[clamp(3rem,7vw,5.8rem)] leading-[0.95] font-black">¡Sé parte de Joaju!</h2>
-          <div class="mt-6 max-w-[40rem] space-y-4 text-[1.1rem] leading-7 text-white/86">
-            <p>El programa cuenta con la ayuda de colaboradores, amigos, familiares y clientes de Datapar.</p>
-            <p>Cualquiera con un corazón solidario es bienvenido.</p>
-            <p class="pt-2 text-xl font-semibold text-white">
-              ¿Te animás a transformar tu vida y la de los demás?<br />
-              ¡Este es tu momento!
+          <span class="eyebrow">Identidad visual</span>
+          <h2 class="heading-section">Un abrazo y una sonrisa</h2>
+          <p class="mt-6 text-xl font-bold leading-8 text-joaju-dark">
+            El concepto del logo e identidad visual es simbolizar el voluntariado como puente entre la ayuda y la necesidad.
+          </p>
+          <p class="mt-4 mb-0 text-lg leading-8 text-joaju-muted">
+            La identidad de Joaju tiene varios significados. El logotipo tiene la forma de dos personas abrazándose,
+            que le da un significado humano, cálido y de unidad, y la forma de una sonrisa, un gesto de alegría y felicidad.
+          </p>
+        </div>
+
+        <div data-animate="scale">
+          <figure class="m-0 rounded-[2rem] border border-joaju-dark/8 bg-white p-5 shadow-card md:p-7">
+            <img src="/imagen-identidad-visual.webp" alt="Dos personas abrazándose más una sonrisa dan como resultado el isotipo de Joaju" width="1152" height="440" loading="lazy" decoding="async" class="h-auto w-full" />
+            <figcaption class="grid grid-cols-3 text-center font-display text-lg font-bold text-joaju-dark md:text-xl">
+              <span>Abrazo</span>
+              <span>Sonrisa</span>
+              <span class="text-joaju-ember">Joaju</span>
+            </figcaption>
+          </figure>
+          <div class="mt-5 flex flex-wrap items-center gap-5 rounded-[2rem] bg-joaju-cream p-5 md:p-6">
+            <div class="flex shrink-0 -space-x-5" aria-hidden="true">
+              <span class="h-16 w-16 rounded-full border-4 border-joaju-cream bg-joaju-yellow"></span>
+              <span class="h-16 w-16 rounded-full border-4 border-joaju-cream bg-joaju-orange"></span>
+            </div>
+            <p class="m-0 min-w-[14rem] flex-1 font-semibold leading-7 text-joaju-dark">
+              Utilizamos colores cálidos y contrastados que refuerzan la idea de unión y alegría que quiere transmitir el proyecto.
             </p>
           </div>
-          <div class="mt-8 flex flex-wrap gap-4">
-            <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-yellow px-6 py-4 font-extrabold text-joaju-dark transition hover:-translate-y-0.5" href="/donaciones">
-              Quiero ayudar
-            </a>
-            <a class="inline-flex min-w-[200px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-extrabold text-white transition hover:-translate-y-0.5" href="https://instagram.com/joajupy" target="_blank" rel="noreferrer">
-              Síguenos
-            </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sumate -->
+    <section id="voluntariado" class="relative overflow-clip bg-joaju-yellow py-20 text-joaju-dark md:py-28">
+      <span class="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full border-[30px] border-white/25" aria-hidden="true"></span>
+      <div class="container-joaju relative grid items-center gap-12 md:grid-cols-[1.25fr_0.75fr]">
+        <div data-animate="up">
+          <span class="eyebrow eyebrow-on-yellow">Sumate a Joaju</span>
+          <h2 class="mt-4 mb-0 text-[clamp(3rem,7vw,5.4rem)] font-extrabold leading-[0.95] tracking-[-0.02em]">¡Sé parte de Joaju!</h2>
+          <div class="mt-6 max-w-[38rem] space-y-3 text-lg font-semibold leading-8">
+            <p class="m-0">El programa cuenta con la ayuda de colaboradores, amigos, familiares y clientes de Datapar.</p>
+            <p class="m-0">Cualquiera con un corazón solidario es bienvenido.</p>
           </div>
+          <p class="mt-6 mb-0 font-display text-[clamp(1.5rem,3vw,2rem)] font-extrabold leading-tight">
+            ¿Te animás a transformar tu vida y la de los demás?<br />
+            ¡Este es tu momento!
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a class="btn btn-dark min-w-[200px]" href="/donaciones">Quiero ayudar</a>
+            <a class="btn btn-outline min-w-[200px]" href="https://instagram.com/joajupy" target="_blank" rel="noopener noreferrer">Síguenos en Instagram</a>
+          </div>
+        </div>
+
+        <!-- Una sonrisa que se dibuja -->
+        <div class="mx-auto w-[min(300px,70%)] md:w-full md:max-w-[340px]" data-animate="scale" aria-hidden="true">
+          <svg class="scribble scribble-uniform h-auto w-full" viewBox="0 0 220 200">
+            <circle cx="62" cy="38" r="22" fill="#fffdf8" />
+            <circle cx="158" cy="38" r="22" fill="#f85f14" />
+            <path pathLength="1" stroke-width="24" class="text-joaju-dark" d="M28 92 C 34 196, 186 196, 192 92" />
+          </svg>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-joaju-dark/10 bg-joaju-dark text-white">
-    <div class="mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
-      <div class="space-y-4">
-        <a href="#inicio" class="inline-flex items-center gap-3 font-extrabold tracking-[0.04em]">
-          <img src="/joaju_light.webp" alt="Logo Joaju claro" width="520" height="176" loading="lazy" decoding="async" class="h-11 w-auto" />
-        </a>
-      </div>
-
-      <div class="space-y-4">
-        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] text-joaju-yellow">Navegación</h3>
-        <div class="grid gap-3 text-white/70">
-          {navItems.map((item) => (
-            <a href={item.href} class="transition hover:text-white">{item.label}</a>
-          ))}
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] text-joaju-yellow">Contacto</h3>
-        <div class="grid gap-3 text-white/70">
-          <a href="mailto:joajuvoluntario@gmail.com" class="transition hover:text-white">joajuvoluntario@gmail.com</a>
-          <div class="flex items-center gap-3">
-            <a href="https://instagram.com/joajupy" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/14 bg-white/6 transition hover:-translate-y-0.5 hover:bg-white/12 hover:text-white" aria-label="Instagram de Joaju">
-              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm8.7 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Z" />
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/joaju/" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/14 bg-white/6 transition hover:-translate-y-0.5 hover:bg-white/12 hover:text-white" aria-label="LinkedIn de Joaju">
-              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V8.98h3.41v1.57h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z" />
-              </svg>
-            </a>
-            <a href="https://github.com/matiaguilera/joaju" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/14 bg-white/6 transition hover:-translate-y-0.5 hover:bg-white/12 hover:text-white" aria-label="Repositorio de Joaju en GitHub">
-              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.59 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.19-1.11-1.51-1.11-1.51-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.37 9.37 0 0 1 12 6.98c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.59.69.49A10.23 10.23 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z" />
-              </svg>
-            </a>
-          </div>
-          <span>Ciudad del Este | Asunción, Paraguay</span>
-          <a href="tel:+595986303376" class="transition hover:text-white">+595 986 303 376</a>
-          <span>Voluntariado Datapar</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    const mobileMenu = document.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
     const donationSuccess = document.querySelector<HTMLElement>("#donation-success");
-
-    mobileMenu?.querySelectorAll<HTMLAnchorElement>("[data-mobile-menu-link]").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.open = false;
-      });
-    });
 
     if (new URLSearchParams(window.location.search).get("donacion") === "enviada") {
       donationSuccess?.classList.remove("hidden");

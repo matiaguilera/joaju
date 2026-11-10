@@ -1,0 +1,22 @@
+---
+import { activityYears } from "../data/activities";
+
+const { current } = Astro.props;
+---
+
+<nav class="flex flex-wrap gap-2" aria-label="Actividades por año">
+  {activityYears.map((year) => (
+    <a
+      href={`/actividades/${year}`}
+      aria-current={year === current ? "page" : undefined}
+      class:list={[
+        "rounded-full border-2 px-5 py-2 font-display text-lg font-bold leading-none transition",
+        year === current
+          ? "border-joaju-dark bg-joaju-dark text-joaju-yellow"
+          : "border-joaju-dark/15 bg-white text-joaju-dark hover:border-joaju-dark"
+      ]}
+    >
+      {year}
+    </a>
+  ))}
+</nav>

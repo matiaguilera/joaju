@@ -1,124 +1,105 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Scribble from "../components/Scribble.astro";
+
+const ways = [
+  { text: "Aporte monetario para campañas y actividades.", dot: "bg-joaju-yellow" },
+  { text: "Ropa, abrigo, alimentos o útiles escolares.", dot: "bg-joaju-orange" },
+  { text: "Participación como voluntario en acciones solidarias.", dot: "bg-joaju-yellow" },
+  { text: "Servicios, alianzas o apoyo en difusión.", dot: "bg-joaju-orange" }
+];
+
+const helpOptions = [
+  { value: "Aporte monetario", label: "Aporte monetario" },
+  { value: "Insumos", label: "Ropa o insumos" },
+  { value: "Servicios o alianzas", label: "Servicios o alianzas" },
+  { value: "Otros", label: "Otros" }
+];
 ---
 
-<BaseLayout title="Donaciones | Joaju">
-  <main>
-    <section class="relative overflow-clip py-24">
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,195,0,0.14),transparent_22%),radial-gradient(circle_at_top_right,rgba(255,87,51,0.12),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,255,255,0.72))]"></div>
-      <div class="relative z-10 mx-auto grid w-[min(1120px,calc(100%-2rem))] gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-        <div data-animate="up">
-          <a href="/" class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-bold uppercase tracking-[0.16em] text-joaju-orange shadow-sm transition hover:text-joaju-dark">
-            ← Volver al inicio
-          </a>
-          <div class="mt-8">
-            <span class="inline-block text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-joaju-orange">
-              Donaciones
-            </span>
-          </div>
-          <h1 class="m-0 mt-4 text-[clamp(2.6rem,6vw,4.8rem)] leading-[0.98] font-black text-joaju-dark">
-            ¿Querés apoyar a Joaju?
-          </h1>
-          <p class="mt-6 text-lg leading-8 text-joaju-muted">
-            Completa este formulario para contarnos cómo te gustaría colaborar. Puedes donar, sumarte como
-            voluntario o aportar desde tus recursos, tu tiempo o tus contactos.
-          </p>
-
-          <div class="mt-8 rounded-[1.8rem] border border-joaju-dark/10 bg-white/85 p-6 shadow-soft">
-            <h2 class="m-0 text-xl font-black text-joaju-dark">Formas de ayudar</h2>
-            <div class="mt-5 grid gap-3 text-joaju-muted">
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Aporte monetario para campañas y actividades.</div>
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Ropa, abrigo, alimentos o útiles escolares.</div>
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Participación como voluntario en acciones solidarias.</div>
-              <div class="rounded-xl bg-joaju-cream px-4 py-3">Servicios, alianzas o apoyo en difusión.</div>
-            </div>
-          </div>
+<BaseLayout title="Donaciones | Joaju" description="Contanos cómo te gustaría colaborar con Joaju: donaciones, voluntariado, servicios o alianzas.">
+  <main class="relative overflow-clip py-14 md:py-20">
+    <div class="pointer-events-none absolute -right-40 -top-48 h-[520px] w-[520px] rounded-full bg-joaju-sand" aria-hidden="true"></div>
+    <section class="container-joaju relative grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+      <div data-animate="up">
+        <a href="/" class="link-arrow"><span aria-hidden="true">←</span> Volver al inicio</a>
+        <div class="mt-8">
+          <span class="eyebrow">Donaciones</span>
         </div>
+        <h1 class="mt-4 mb-0 text-[clamp(2.6rem,6vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.02em] text-joaju-dark">
+          ¿Querés apoyar a
+          <span class="relative inline-block whitespace-nowrap">
+            Joaju?
+            <Scribble class="absolute -bottom-[0.06em] left-0 h-[0.2em] w-full text-joaju-orange" width={6} />
+          </span>
+        </h1>
+        <p class="mt-7 mb-0 text-lg leading-8 text-joaju-muted">
+          Completa este formulario para contarnos cómo te gustaría colaborar. Puedes donar, sumarte como
+          voluntario o aportar desde tus recursos, tu tiempo o tus contactos.
+        </p>
 
-        <form
-          data-animate="scale"
-          action="https://formsubmit.co/joajuvoluntario@gmail.com"
-          method="post"
-          class="rounded-[2rem] border border-joaju-dark/10 bg-white p-7 shadow-soft"
-        >
-          <input type="hidden" name="_subject" value="Nueva solicitud de ayuda desde Joaju" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://joaju-phi.vercel.app/?donacion=enviada" />
-          <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+        <div class="mt-9 rounded-[2rem] bg-joaju-dark p-7 text-white shadow-soft">
+          <h2 class="m-0 text-2xl font-extrabold text-joaju-yellow">Formas de ayudar</h2>
+          <ul class="m-0 mt-5 grid list-none gap-4 p-0">
+            {ways.map((way) => (
+              <li class="flex gap-3.5 text-[1.05rem] font-semibold leading-7 text-white/90">
+                <span class:list={["mt-2 h-3 w-3 shrink-0 rounded-full", way.dot]} aria-hidden="true"></span>
+                <span>{way.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
-          <div class="grid gap-5 md:grid-cols-2">
-            <label class="grid gap-2">
-              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Nombre</span>
-              <input
-                type="text"
-                name="nombre"
-                required
-                placeholder="Tu nombre"
-                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-              />
-            </label>
+      <form
+        data-animate="scale"
+        action="https://formsubmit.co/joajuvoluntario@gmail.com"
+        method="post"
+        class="h-fit rounded-[2rem] border border-joaju-dark/8 bg-joaju-paper p-6 shadow-soft md:p-9"
+      >
+        <input type="hidden" name="_subject" value="Nueva solicitud de ayuda desde Joaju" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://joaju-phi.vercel.app/?donacion=enviada" />
+        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
 
-            <label class="grid gap-2">
-              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Correo</span>
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="tu@email.com"
-                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-              />
-            </label>
-
-            <label class="grid gap-2 md:col-span-2">
-              <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Teléfono</span>
-              <input
-                type="tel"
-                name="telefono"
-                placeholder="Tu número de contacto"
-                class="rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-              />
-            </label>
-          </div>
-
-          <fieldset class="mt-6">
-            <legend class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">¿Cómo te gustaría ayudar?</legend>
-            <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Aporte monetario" class="accent-[#ff5733]" />
-                <span>Aporte monetario</span>
-              </label>
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Insumos" class="accent-[#ff5733]" />
-                <span>Ropa o insumos</span>
-              </label>
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Servicios o alianzas" class="accent-[#ff5733]" />
-                <span>Servicios o alianzas</span>
-              </label>
-              <label class="flex items-center gap-3 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark">
-                <input type="checkbox" name="ayuda" value="Otros" class="accent-[#ff5733]" />
-                <span>Otros</span>
-              </label>
-            </div>
-          </fieldset>
-
-          <label class="mt-6 grid gap-2">
-            <span class="text-sm font-bold uppercase tracking-[0.14em] text-joaju-orange">Mensaje</span>
-            <textarea
-              name="mensaje"
-              placeholder="Cuéntanos cómo te gustaría colaborar"
-              class="min-h-36 rounded-xl border border-joaju-dark/10 bg-joaju-cream px-4 py-3 text-joaju-dark outline-none transition focus:border-joaju-orange"
-            ></textarea>
+        <div class="grid gap-5 md:grid-cols-2">
+          <label class="grid gap-2">
+            <span class="field-label">Nombre</span>
+            <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre" class="field" />
           </label>
 
-          <button
-            type="submit"
-            class="mt-8 inline-flex min-w-[220px] items-center justify-center rounded-2xl bg-joaju-orange px-6 py-4 font-bold text-white transition hover:-translate-y-0.5 hover:bg-joaju-dark"
-          >
-            Enviar
-          </button>
-        </form>
-      </div>
+          <label class="grid gap-2">
+            <span class="field-label">Correo</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="tu@email.com" class="field" />
+          </label>
+
+          <label class="grid gap-2 md:col-span-2">
+            <span class="field-label">Teléfono <span class="font-semibold normal-case tracking-normal text-joaju-muted">(opcional)</span></span>
+            <input type="tel" name="telefono" autocomplete="tel" placeholder="Tu número de contacto" class="field" />
+          </label>
+        </div>
+
+        <fieldset class="m-0 mt-7 border-0 p-0">
+          <legend class="field-label p-0">¿Cómo te gustaría ayudar?</legend>
+          <div class="mt-3 grid gap-3 sm:grid-cols-2">
+            {helpOptions.map((option) => (
+              <label class="flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-joaju-dark/12 bg-white px-4 py-3 font-bold text-joaju-dark transition hover:border-joaju-dark/40 has-[:checked]:border-joaju-dark has-[:checked]:bg-joaju-yellow has-[:focus-visible]:border-joaju-orange">
+                <input type="checkbox" name="ayuda" value={option.value} class="h-5 w-5 accent-[#00282f]" />
+                <span>{option.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label class="mt-7 grid gap-2">
+          <span class="field-label">Mensaje <span class="font-semibold normal-case tracking-normal text-joaju-muted">(opcional)</span></span>
+          <textarea name="mensaje" placeholder="Cuéntanos cómo te gustaría colaborar" class="field min-h-36"></textarea>
+        </label>
+
+        <button type="submit" class="btn btn-yellow mt-8 w-full sm:w-auto sm:min-w-[220px]">
+          Enviar
+        </button>
+      </form>
     </section>
   </main>
 </BaseLayout>

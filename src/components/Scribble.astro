@@ -1,0 +1,8 @@
+---
+// Subrayado a mano alzada que se "dibuja" cuando su contenedor [data-animate] entra en pantalla.
+const { class: className = "", width = 5 } = Astro.props;
+---
+
+<svg class:list={["scribble", className]} viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true">
+  <path pathLength="1" stroke-width={width} d="M4 12 C 46 3, 88 17, 138 9 S 236 4, 296 11" />
+</svg>
